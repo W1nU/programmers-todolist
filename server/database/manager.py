@@ -1,4 +1,4 @@
-import database.acssess.maria as maria
+from database.acssess.maria import maria
 
 class manager:
     def __init__(self):
@@ -8,7 +8,7 @@ class manager:
     def check_db_server(func):
         def decorated():
             try:
-                func()
+                return func()
             except:
                 return {'status': 0, 
                         "contents" : "데이터베이스 서버에 문제가 있습니다. 관리자에게 문의하세요."
