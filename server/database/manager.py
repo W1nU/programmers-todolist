@@ -14,7 +14,7 @@ class manager:
     
     @self.check_db_server
     def check_duplicate(self, q_type, content):
-        if q_type == "email":
+        if q_type == "user_email":
             if self.maria.check_email_duplicate(content) == True:
                 return [1, "이미 가입된 이메일 입니다"]
             else:
@@ -32,3 +32,21 @@ class manager:
             return [0, "정상적인 요청이 아닙니다"]
                 
         return [1, "정상적으로 등록되었습니다"]
+
+    @self.check_db_server
+    def signin(self, content):
+        if self.check_duplicate(self, "user_email", content)[0] == 0:
+            self.maria.create_user(content)
+            return [1, "정상 가입"]
+        
+        else:
+            return [0, "이미 가입된 이메일 입니다"]
+
+    @self.check_db_server
+    def login(self, content):
+        user = self.maria.find_user(content)
+        if user['user_password'] == content['user_password']:
+            return [1, "정상 로그인"]
+        
+        else:
+            return [0, "아이디와 비밀번호를 확인하세요"]

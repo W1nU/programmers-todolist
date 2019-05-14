@@ -30,13 +30,18 @@ class maria:
         return cursor.fetchall()
     
     def check_email_duplicate(self, content):
-        sql = f"""SELECT EXISTS(SELECT user_email FROM user WHERE email = '{content['email']}');"""
+        sql = f"""SELECT EXISTS(SELECT user_email FROM user WHERE email = '{content['user_email']}');"""
         return self.s_excute(sql)
-            
+
+    def create_user(self, content):
+        sql = f"""INSERT INTO user(user_email, user_password) VALUES ({content['user_email']}, {content['user_password']});"""
+        self.execute(sql)
+
     def create_todo_with_time(self, content):
         sql = f"""INSERT INTO todo(todo_user, todo_title, toto_content) VALUES ({content['todo_user']}, {content['todo_title']}, {content['todo_content']});"""
-        try:
-            self.excute(sql)
-            return 1
-        except:
-            return 0
+        self.excute(sql)
+        
+    def find_user(self, content):
+        sql = f"""SELECT * FROM user WHERE email = '{content['user_email']}'"""
+        return self.s_execute(sql)
+        
