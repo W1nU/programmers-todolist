@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3888ba0e-f629-43a9-be3e-ff2b388cf486" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Todo/TodoBoxHeader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Todo/TodoContent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Todo/TodoItem.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/connections/SignIn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/TodoBoxContainer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Connections/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/AddTodoForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Form/SignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/AuthForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NavigationBar/Navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavigationBar/Navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NavigationBar/Navigationbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavigationBar/Navigationbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TodoBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Todo/TodoBox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/TodoBoxContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/TodoBoxContainer.js" afterDir="false" />
-    </list>
+    <list default="true" id="3888ba0e-f629-43a9-be3e-ff2b388cf486" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -101,7 +86,7 @@
         <entry file="file://$PROJECT_DIR$/src/App.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="36">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+              <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -184,7 +169,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="960" />
     <option name="y" value="23" />
     <option name="width" value="960" />
@@ -320,12 +305,12 @@
       <updated>1557741526224</updated>
       <workItem from="1557741527443" duration="3645000" />
       <workItem from="1557751201848" duration="51000" />
-      <workItem from="1557751747372" duration="19282000" />
+      <workItem from="1557751747372" duration="19596000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22978000" />
+    <option name="totallyTimeSpent" value="23292000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="960" y="23" width="960" height="1109" extended-state="0" />
@@ -561,7 +546,7 @@
     <entry file="file://$PROJECT_DIR$/src/App.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
         </state>
       </provider>
     </entry>
