@@ -14,7 +14,7 @@ class maria:
                                   db = 'todo',
                                   charset = 'utf8')
         cursor = connect.cursor()
-        cursor.excute(sql)
+        cursor.execute(sql)
         connect.commit()
 
     def s_execute(self, sql):
@@ -29,11 +29,11 @@ class maria:
         return cursor.fetchall()
     
     def check_email_duplicate(self, content):
-        sql = f"""SELECT EXISTS(SELECT user_email FROM user WHERE email = '{content['user_email']}');"""
-        return self.s_excute(sql)
+        sql = f"""SELECT EXISTS(SELECT user_email FROM user WHERE user_email = '{content['user_email']}');"""
+        return self.s_execute(sql)
 
     def create_user(self, content):
-        sql = f"""INSERT INTO user(user_email, user_password) VALUES ({content['user_email']}, {content['user_password']});"""
+        sql = f"""INSERT INTO user(user_email, user_password) VALUES ('{content['user_email']}',' {content['user_password']}');"""
         
         print(self.execute(sql))
 

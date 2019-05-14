@@ -10,6 +10,7 @@ db_manager = manager()
 
 @app.route("/signin", methods = ["POST", "GET"])
 def signin():
+    print(db_manager)
     data = request.json
     data['user_password'] = hashlib.md5(data['user_password'].encode()).hexdigest() 
     print(data) 

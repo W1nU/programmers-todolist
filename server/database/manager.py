@@ -1,21 +1,19 @@
 from database.acssess.maria import maria
 
-class check_db_server:
-    def __init__(self, func):
-        self.func = func
-    
-    def __call__(self, *args, **kwargs):
-        try:
-            return self.func(*args, **kwargs)
-        except Exception as e:
-            print(e)
-            return {'status': 0, "contents" : "데이터베이스 서버에 문제가 있습니다. 관리자에게 문의하세요."}
-        
 class manager:
     def __init__(self):
         self.maria = maria()
     # todo - 데코레이터 통해서 서버 상태 점검 
-    
+   
+    def check_db_server(func):
+        def inner(*args):
+            try:
+                return func(*args)
+            except Exception as e:
+                print(e)
+                return {'status': 0, 'contents' : "데이터베이스 서버에 문제가 있습니다. 관리자에게 문의하세요"}
+        return inner
+
     @check_db_server
     def check_duplicate(self, q_type, content):
         if q_type == "user_email":
@@ -39,7 +37,7 @@ class manager:
 
     @check_db_server
     def signin(self, content):
-        if self.check_duplicate(self, "user_email", content)[0] == 0:
+        if self.check_duplicate("user_email", content)[0] == 0:
             self.maria.create_user(content)
             return {
                 "status" : 1,
