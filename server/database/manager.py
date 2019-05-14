@@ -10,7 +10,9 @@ class manager:
             try:
                 func()
             except:
-                return [0, "데이터베이스 서버에 문제가 있습니다. 관리자에게 문의하세요."]
+                return {'status': 0, 
+                        "contents" : "데이터베이스 서버에 문제가 있습니다. 관리자에게 문의하세요."
+                }
     
     @check_db_server
     def check_duplicate(self, q_type, content):
@@ -37,7 +39,10 @@ class manager:
     def signin(self, content):
         if self.check_duplicate(self, "user_email", content)[0] == 0:
             self.maria.create_user(content)
-            return [1, "정상 가입"]
+            return {
+                "status" : 1,
+                "contents" : "정상 가입"
+                }
         
         else:
             return [0, "이미 가입된 이메일 입니다"]
