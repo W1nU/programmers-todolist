@@ -6,7 +6,6 @@ class maria:
         self.maria_user = input('Insert username : ')
         self.password = getpass('Insert password : ')
 
-
     def execute(self, sql):
         connect = pymysql.connect(host = 'localhost',
                                   port = 3306,
@@ -35,7 +34,8 @@ class maria:
 
     def create_user(self, content):
         sql = f"""INSERT INTO user(user_email, user_password) VALUES ({content['user_email']}, {content['user_password']});"""
-        self.execute(sql)
+        
+        print(self.execute(sql))
 
     def create_todo_with_time(self, content):
         sql = f"""INSERT INTO todo(todo_user, todo_title, toto_content) VALUES ({content['todo_user']}, {content['todo_title']}, {content['todo_content']});"""
