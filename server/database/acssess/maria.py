@@ -1,5 +1,4 @@
 import pymysql
-import database.sql.user
 
 class maria:
     def __init__(self):
@@ -44,4 +43,3 @@ class maria:
     def find_user(self, content):
         sql = f"""SELECT * FROM user WHERE email = '{content['user_email']}'"""
         return self.s_execute(sql)
-        
