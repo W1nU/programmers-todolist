@@ -10,7 +10,8 @@ class Navigationbar extends Component {
             inAuth: false,
             inLogIn: false,
             authTitle: '',
-            authType: ''
+            authType: '',
+            url: ''
         };
         this._setButtons();
     }
@@ -19,7 +20,8 @@ class Navigationbar extends Component {
         this.setState({
             inAuth: true,
             authTitle: '회원가입',
-            authType: '가입'
+            authType: '가입',
+            url: "http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/signin"
         })
     }
 
@@ -70,6 +72,7 @@ class Navigationbar extends Component {
                     onHide = {authClose}
                     authTitle = {this.state.authTitle}
                     authButtonType = {this.state.authType}
+                    url = {this.state.url}
             />
 
             </Navbar>
