@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Form, Button, Modal, Alert} from 'react-bootstrap';
+import {Form, Button, Modal} from 'react-bootstrap';
 import Alerts from '../Alerts';
 
-class SignInForm extends Component {
+class AuthForm extends Component {
     constructor(props) {
         super(props);
         this.state = {showAlert: false}
@@ -20,7 +20,7 @@ class SignInForm extends Component {
 
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            회원가입
+                            {this.props.authTitle}
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -40,7 +40,7 @@ class SignInForm extends Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="primary" type="submit">
-                            회원가입
+                            {this.props.authButtonType}
                         </Button>
                         <Button variant="secondary" onClick={this.props.onHide}>
                             닫기
@@ -53,4 +53,4 @@ class SignInForm extends Component {
 }
 
 
-export default SignInForm;
+export default AuthForm;

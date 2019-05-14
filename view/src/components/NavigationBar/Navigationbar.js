@@ -1,26 +1,41 @@
 import React, {Component} from 'react';
 import {Button, Nav, Navbar} from 'react-bootstrap';
-import SignInForm from '../Form/SignInForm';
+import AuthForm from '../Form/AuthForm';
 
 class Navigationbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
             Buttons: [],
-            inSignIn: false
+            inAuth: false,
+            inLogIn: false,
+            authTitle: '',
+            authType: ''
         };
         this._setButtons();
     }
 
     _setInSignIn = () => {
-        this.setState({inSignIn: true})
+        this.setState({
+            inAuth: true,
+            authTitle: '회원가입',
+            authType: '가입'
+        })
+    }
+
+    _setInLogin = () => {
+        this.setState({
+            inAuth:true,
+            authTitle: '로그인',
+            authType: '로그인'
+        })
     }
 
     _setButtons = () => {
         if (this.props.isLogin === true) {
             this.state.Buttons.push(<Button id="loginButton" size="sm">로그아웃</Button>);
         } else {
-            this.state.Buttons.push(<Button key="loginButton" id="loginButton" size="sm">
+            this.state.Buttons.push(<Button key="loginButton" id="loginButton" size="sm" onClick={this._setInLogin}>
                 로그인</Button>);
             this.state.Buttons.push(<div key="buttonSpace" id="buttonSpace">&nbsp;</div>);
             this.state.Buttons.push(<Button key="signinButton" id="signinButton" size="sm"
@@ -30,7 +45,8 @@ class Navigationbar extends Component {
     };
 
     render() {
-        let signInClose = () => this.setState({inSignIn: false});
+        let authClose = () => this.setState({inAuth: false});
+        // 이 메소드를 이용하여 창 닫기 제어
 
         return (
             <Navbar bg="dark" variant="dark">
@@ -49,9 +65,13 @@ class Navigationbar extends Component {
                     <Nav.Link href="#home">이전 기록</Nav.Link>
                 </Nav>
                 {this.state.Buttons}
-                <SignInForm
-                    show={this.state.inSignIn}
-                    onHide={signInClose}/>
+                <AuthForm
+                    show = {this.state.inAuth}
+                    onHide = {authClose}
+                    authTitle = {this.state.authTitle}
+                    authButtonType = {this.state.authType}
+            />
+
             </Navbar>
 
         )

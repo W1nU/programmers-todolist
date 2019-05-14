@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import NavigationBar from './components/NavigationBar/Navigationbar'
-import SignInForm from './components/Form/SignInForm';
+import TodoContainer from './containers/TodoBoxContainer';
+import TodoBox from './components/Todo/TodoBox';
 
 class App extends Component
 
@@ -19,7 +20,11 @@ class App extends Component
   render() {
     return (
       <div className = "App" >
-          <NavigationBar isLogin={false} />
+          <div id = 'navbar'>
+            <NavigationBar isLogin={false} />
+          </div>
+          <TodoContainer />
+
       </div>
     );
   }
