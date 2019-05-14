@@ -12,7 +12,7 @@ class manager:
             except:
                 return [0, "데이터베이스 서버에 문제가 있습니다. 관리자에게 문의하세요."]
     
-    @self.check_db_server
+    @check_db_server
     def check_duplicate(self, q_type, content):
         if q_type == "user_email":
             if self.maria.check_email_duplicate(content) == True:
@@ -20,7 +20,7 @@ class manager:
             else:
                 return [0, ""]
 
-    @self.check_db_server
+    @check_db_server
     def create_todo(self, q_type, content):
         if q_type == "with_time":
             self.maria.create_todo_with_time(content)
@@ -33,7 +33,7 @@ class manager:
                 
         return [1, "정상적으로 등록되었습니다"]
 
-    @self.check_db_server
+    @check_db_server
     def signin(self, content):
         if self.check_duplicate(self, "user_email", content)[0] == 0:
             self.maria.create_user(content)
@@ -42,7 +42,7 @@ class manager:
         else:
             return [0, "이미 가입된 이메일 입니다"]
 
-    @self.check_db_server
+    @check_db_server
     def login(self, content):
         user = self.maria.find_user(content)
         if user['user_password'] == content['user_password']:
