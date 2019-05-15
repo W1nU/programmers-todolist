@@ -22,9 +22,10 @@ def login():
     data['user_password'] = hashlib.md5(data['user_password'].encode()).hexdigest()
     return json.dumps(db_manager.login(data))
 
-@app.route("/check_session", method = ["POST","GET"])
+@app.route("/check_session", methods = ["POST","GET"])
 def check_session():
     data = request.json
+    print(db_manager.session_check(data['sessionKey'], data['user_email']))
     return json.dumps(db_manager.session_check(data['sessionKey'], data['user_email']))
     
 app.run('0.0.0.0')
