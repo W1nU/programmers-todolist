@@ -75,6 +75,7 @@ class Navigationbar extends Component {
                     authButtonType = {this.state.authType}
                     url = {this.state.url}
                     login = {this.props.login}
+                    setEmail = {this.props.setEmail}
             />
 
             </Navbar>

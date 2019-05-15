@@ -20,12 +20,17 @@ def signin():
 def login():
     data = request.json
     data['user_password'] = hashlib.md5(data['user_password'].encode()).hexdigest()
-    return json.dumps(db_manager.login(data))
+    return json.dumps(db_manager.login(data) ,ensure_ascii=False)
 
 @app.route("/check_session", methods = ["POST","GET"])
 def check_session():
     data = request.json
     print(db_manager.session_check(data['sessionKey'], data['user_email']))
-    return json.dumps(db_manager.session_check(data['sessionKey'], data['user_email']))
-    
+    return json.dumps(db_manager.session_check(data['sessionKey'], data['user_email']),ensure_ascii=False)
+
+@app.route("/add_todo", methods = ["POST","GET"])
+def add_todo():
+    data = request.json
+    return json.dumps(db_manager.create_todo())
+
 app.run('0.0.0.0')

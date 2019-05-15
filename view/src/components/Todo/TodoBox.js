@@ -17,7 +17,7 @@ class TodoBox extends Component {
                             <ListGroup.Item action href="#link1">
                                 Link 1
                             </ListGroup.Item>
-                            <ListGroup.Item action href="#link2">
+                            <ListGroup.Item action onClick={this.props.addTodo}>
                                 + 추가하기
                             </ListGroup.Item>
                         </ListGroup>

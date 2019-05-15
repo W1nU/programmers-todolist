@@ -3,10 +3,10 @@ import TodoBox from '../components/Todo/TodoBox';
 
 import './TodoBoxContainer.css';
 
-const TodoBoxContainer = () => {
+const TodoBoxContainer = (props) => {
     return(
         <div id = "todo-container">
-            <TodoBox/>
+            <TodoBox email={props.email} addTodo={props.addTodo}/>
         </div>
     )
 };

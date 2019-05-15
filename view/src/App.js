@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
-import NavigationBar from './components/NavigationBar/Navigationbar'
+import {Alert} from 'react-bootstrap';
+import NavigationBar from './components/NavigationBar/Navigationbar';
 import TodoContainer from './containers/TodoBoxContainer';
+import AddTodoForm from './components/Form/AddTodoForm';
 import axios from "axios";
-import Base64 from "crypto-js/enc-base64";
-import sha256 from "crypto-js/sha256";
 
 class App extends Component {
     constructor(props) {
@@ -14,8 +14,20 @@ class App extends Component {
             inSignIn: false,
             sessionKey: '',
             isLogin: false,
-            todo: []
+            todo: [],
+            alertShow: false,
+            alertMessage: '',
+            email: '',
+            inAddTodo: false,
+            addTitle: '',
+            url: ''
         }
+    }
+
+    _setUserEmail = (email) => {
+        this.setState({
+            email:email
+        })
     }
 
     _login = (session_key) => {
@@ -24,7 +36,7 @@ class App extends Component {
             isLogin: true
         });
         console.log(this.state)
-    }
+    };
 
     _sessionCheck = () => {
         if(localStorage.sesstionKey){
@@ -44,7 +56,19 @@ class App extends Component {
         else{
             return 0
         }
+    };
 
+    _closeAlert = () => {
+        this.setState({
+            alertShow: false
+        })
+    };
+
+    _displayAlert = (M) => {
+        this.setState({
+            alertShow: true,
+            alertMessage: M
+        })
     }
 
     componentDidMount() {
@@ -57,13 +81,28 @@ class App extends Component {
     }
 
     render() {
+        const close = () => {this.setState({inAddTodo: false})};
+        const addTodo = () => {this.setState({inAddTodo: true})}
         return (
             <div className="App">
                 <div id='navbar'>
-                    <NavigationBar isLogin={this.state.isLogin} login={this._login}/>
+                    <NavigationBar isLogin={this.state.isLogin} login={this._login} setEmail={this._setUserEmail}/>
                 </div>
-                <TodoContainer/>
+                <Alert show={this.state.alertShow} dismissible onClose={this._closeAlert} variant="success">
+                    {this.state.alertMessage}
+                </Alert>
+                <AddTodoForm
+                    show = {this.state.inAddTodo}
+                    onHide = {close}
+                    title = {this.state.addTitle}
+                    url = {this.state.url}
+                    email = {this.state.email}
+                />
 
+                <TodoContainer
+                    email={this.state.email}
+                    addTodo={addTodo}
+                />
             </div>
         );
     }
