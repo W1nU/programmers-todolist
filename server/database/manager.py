@@ -17,12 +17,12 @@ class manager:
 
     def session_check(self, key, email):
         s_key = self.redisobj.open_session(email)
-        if s_key == '0':
-            return 0
 
         if s_key == key:
             return 1
-
+        else:
+            return 0
+            
     @check_db_server
     def check_duplicate(self, q_type, content):
         if q_type == "user_email":
