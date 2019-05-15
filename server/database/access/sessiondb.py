@@ -1,11 +1,12 @@
 from redis import Redis
 from uuid import uuid4
+from time import time
 
 class rdis:
     def __init__(self):
         ip = 'localhost'
         port = 6379
-        timeout = 3600
+        self.timeout = 3600
         self.connect = Redis(ip, port)
 
     def is_exist_session(self, id):
@@ -30,7 +31,7 @@ class rdis:
             self.drop_session(id)
         time_now = str(time())
         session_key  = str(uuid4())+time_now
-        self.connect.setex(id, session_key, self.timeout)
+        self.connect.setex(id, self.timeout, session_key)
         return session_key
 
     def id_block(self, id):

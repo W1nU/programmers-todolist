@@ -66,7 +66,7 @@ class manager:
         print(user[0][2], content)
         if user[0][2].strip() == content['user_password']:
             s_key = self.redisobj.create_session(content['user_email'])
-            return [1, "정상 로그인", S_key]
+            return [1, "정상 로그인", s_key]
         
         else:
             return [0, "아이디와 비밀번호를 확인하세요"]
