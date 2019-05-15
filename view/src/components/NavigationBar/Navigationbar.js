@@ -8,7 +8,6 @@ class Navigationbar extends Component {
         this.state = {
             Buttons: [],
             inAuth: false,
-            inLogIn: false,
             authTitle: '',
             authType: '',
             url: ''
@@ -29,7 +28,8 @@ class Navigationbar extends Component {
         this.setState({
             inAuth:true,
             authTitle: '로그인',
-            authType: '로그인'
+            authType: '로그인',
+            url: "http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/login"
         })
     }
 
