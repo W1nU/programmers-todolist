@@ -17,6 +17,7 @@ class manager:
     @check_db_server
     def check_duplicate(self, q_type, content):
         if q_type == "user_email":
+            print(self.maria.check_email_duplicate(content))
             if self.maria.check_email_duplicate(content) == True:
                 return [1, "이미 가입된 이메일 입니다"]
             else:
