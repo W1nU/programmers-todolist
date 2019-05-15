@@ -42,5 +42,5 @@ class maria:
         self.excute(sql)
         
     def find_user(self, content):
-        sql = f"""SELECT * FROM user WHERE email = '{content['user_email']}'"""
+        sql = f"""SELECT * FROM user WHERE user_email = '{content['user_email']}'"""
         return self.s_execute(sql)

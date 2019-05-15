@@ -50,7 +50,10 @@ class manager:
     @check_db_server
     def login(self, content):
         user = self.maria.find_user(content)
-        if user['user_password'] == content['user_password']:
+        if self.check_duplicate("user_email", content)[0] == 0:
+            return [0, "가입되지 않은 이메일 입니다"]
+        print(user[0][2], content)
+        if user[0][2].strip() == content['user_password']:
             return [1, "정상 로그인"]
         
         else:
