@@ -1,7 +1,7 @@
 from redis import Redis
 from uuid import uuid4
 
-class redis:
+class rdis:
     def __init__(self):
         ip = 'localhost'
         port = 6379

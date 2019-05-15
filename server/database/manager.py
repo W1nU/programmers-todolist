@@ -1,10 +1,10 @@
 from database.access.maria import maria
-from database.access.redis import redis
+from database.access.sessiondb import rdis
 
 class manager:
     def __init__(self):
         self.maria = maria()
-        self.redis = redis()
+        self.redisobj = rdis()
    
     def check_db_server(func):
         def inner(*args):
@@ -59,14 +59,13 @@ class manager:
         else:
             return [0, "이미 가입된 이메일 입니다"]
 
-    @check_db_server
     def login(self, content):
         user = self.maria.find_user(content)
         if self.check_duplicate("user_email", content)[0] == 0:
             return [0, "가입되지 않은 이메일 입니다"]
         print(user[0][2], content)
         if user[0][2].strip() == content['user_password']:
-            s_key = redis.create_session(content['user_email'])
+            s_key = self.redisobj.create_session(content['user_email'])
             return [1, "정상 로그인", S_key]
         
         else:
