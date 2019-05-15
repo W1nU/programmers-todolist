@@ -28,7 +28,7 @@ class App extends Component {
 
     _sessionCheck = () => {
         if(localStorage.sesstionKey){
-            axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/checksession", {
+            axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/check_session", {
                     "sessionKey": localStorage.sesstionKey,
                     "user_email": localStorage.user_email
                 }
@@ -39,11 +39,12 @@ class App extends Component {
                 else{
                     return 0
                 }
-            })
+            }).catch(err => console.log(err))
         }
         else{
             return 0
         }
+
     }
 
     componentDidMount() {

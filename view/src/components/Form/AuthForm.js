@@ -85,7 +85,7 @@ class AuthForm extends Component {
         else{
             this.props.onHide();
             localStorage.sessionKey = data.data[2];
-            localStorage.user_email = this.state.user_email;
+            localStorage.user_email = this.state.email;
             this.props.login(data.data[2]);
         }
     };
