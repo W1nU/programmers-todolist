@@ -63,7 +63,7 @@ class manager:
         user = self.maria.find_user(content)
         if self.check_duplicate("user_email", content)[0] == 0:
             return [0, "가입되지 않은 이메일 입니다"]
-        print(user[0][2], content)
+
         if user[0][2].strip() == content['user_password']:
             s_key = self.redisobj.create_session(content['user_email'])
             return [1, "정상 로그인", s_key]

@@ -15,7 +15,6 @@ class AuthForm extends Component {
             password : '',
             error: ""
         }
-
     }
 
     _setUserEmailInfo = (e) => {
@@ -80,12 +79,14 @@ class AuthForm extends Component {
     };
 
     _checkResponse = (data) => {
-        console.log(data);
         if(data.data[0] === 0){
             this._alertControl(data.data[1])
         }
         else{
-            this.props.onHide()
+            this.props.onHide();
+            localStorage.sessionKey = data.data[2];
+            localStorage.user_email = this.state.user_email;
+            this.props.login(data.data[2]);
         }
     };
 

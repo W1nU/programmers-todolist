@@ -6,7 +6,6 @@ class Navigationbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Buttons: [],
             inAuth: false,
             authTitle: '',
             authType: '',
@@ -34,16 +33,18 @@ class Navigationbar extends Component {
     }
 
     _setButtons = () => {
+        let Buttons = [];
         if (this.props.isLogin === true) {
-            this.state.Buttons.push(<Button id="loginButton" size="sm">로그아웃</Button>);
+            Buttons.push(<Button id="loginButton" size="sm">로그아웃</Button>);
         } else {
-            this.state.Buttons.push(<Button key="loginButton" id="loginButton" size="sm" onClick={this._setInLogin}>
+            Buttons.push(<Button key="loginButton" id="loginButton" size="sm" onClick={this._setInLogin}>
                 로그인</Button>);
-            this.state.Buttons.push(<div key="buttonSpace" id="buttonSpace">&nbsp;</div>);
-            this.state.Buttons.push(<Button key="signinButton" id="signinButton" size="sm"
+            Buttons.push(<div key="buttonSpace" id="buttonSpace">&nbsp;</div>);
+            Buttons.push(<Button key="signinButton" id="signinButton" size="sm"
                                             onClick={this._setInSignIn}>회원가입</Button>);
 
         }
+        return Buttons
     };
 
     render() {
@@ -66,13 +67,14 @@ class Navigationbar extends Component {
                     <Nav.Link href="#home">Home</Nav.Link>
                     <Nav.Link href="#home">이전 기록</Nav.Link>
                 </Nav>
-                {this.state.Buttons}
+                {this._setButtons()}
                 <AuthForm
                     show = {this.state.inAuth}
                     onHide = {authClose}
                     authTitle = {this.state.authTitle}
                     authButtonType = {this.state.authType}
                     url = {this.state.url}
+                    login = {this.props.login}
             />
 
             </Navbar>
