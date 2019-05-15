@@ -19,6 +19,6 @@ def signin():
 @app.route("/login", methods = ["POST", "GET"])
 def login():
     data = request.args.to_dict()
-    return manager.login(data)
+    return json.dumps(manager.login(data))
 
 app.run('0.0.0.0')
