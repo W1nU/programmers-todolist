@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3888ba0e-f629-43a9-be3e-ff2b388cf486" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../server/database/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/database/manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Alerts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Alerts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Form/AuthForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/AuthForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NavigationBar/Navigationbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavigationBar/Navigationbar.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Form/AuthForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="91" column="53" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
+            <state relative-caret-position="258">
+              <caret line="95" column="51" lean-forward="true" selection-start-line="95" selection-start-column="51" selection-end-line="95" selection-end-column="51" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -132,6 +129,8 @@
     <findStrings>
       <find />
       <find>#link1</find>
+      <find>console</find>
+      <find>sole</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -167,8 +166,8 @@
         <option value="$PROJECT_DIR$/src/containers/TodoBoxContainer.css" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/components/Alerts.js" />
-        <option value="$PROJECT_DIR$/src/components/Form/AuthForm.js" />
         <option value="$PROJECT_DIR$/src/components/NavigationBar/Navigationbar.js" />
+        <option value="$PROJECT_DIR$/src/components/Form/AuthForm.js" />
       </list>
     </option>
   </component>
@@ -178,7 +177,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="1280" />
     <option name="y" value="23" />
     <option name="width" value="1280" />
@@ -197,6 +196,11 @@
             <path>
               <item name="view" type="b2602c69:ProjectViewProjectNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="view" type="b2602c69:ProjectViewProjectNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="view" type="b2602c69:ProjectViewProjectNode" />
@@ -314,18 +318,17 @@
       <updated>1557741526224</updated>
       <workItem from="1557741527443" duration="3645000" />
       <workItem from="1557751201848" duration="51000" />
-      <workItem from="1557751747372" duration="30511000" />
+      <workItem from="1557751747372" duration="31348000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34207000" />
+    <option name="totallyTimeSpent" value="35044000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="2560" height="1342" extended-state="6" />
-    <editor active="true" />
+    <frame x="1280" y="23" width="1280" height="1342" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11106735" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2239873" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -554,8 +557,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Form/AuthForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="91" column="53" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
+        <state relative-caret-position="258">
+          <caret line="95" column="51" lean-forward="true" selection-start-line="95" selection-start-column="51" selection-end-line="95" selection-end-column="51" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

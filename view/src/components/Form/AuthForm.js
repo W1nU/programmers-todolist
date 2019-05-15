@@ -80,6 +80,7 @@ class AuthForm extends Component {
     };
 
     _checkResponse = (data) => {
+        console.log(data);
         if(data.data[0] === 0){
             this._alertControl(data.data[1])
         }
