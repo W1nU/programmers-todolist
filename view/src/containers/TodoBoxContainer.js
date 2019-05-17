@@ -6,7 +6,14 @@ import './TodoBoxContainer.css';
 const TodoBoxContainer = (props) => {
     return(
         <div id = "todo-container">
-            <TodoBox email={props.email} addTodo={props.addTodo}/>
+            <TodoBox
+                email={props.email}
+                addTodo={props.addTodo}
+                todo={props.todo}
+                modiTodo={props.modiTodo}
+                deleteTodo={props.deleteTodo}
+                setSelected={props.setSelected}
+            />
         </div>
     )
 };

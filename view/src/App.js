@@ -3,7 +3,7 @@ import './App.css';
 import {Alert} from 'react-bootstrap';
 import NavigationBar from './components/NavigationBar/Navigationbar';
 import TodoContainer from './containers/TodoBoxContainer';
-import AddTodoForm from './components/Form/AddTodoForm';
+import TodoForm from './components/Form/TodoForm';
 import axios from "axios";
 
 class App extends Component {
@@ -14,13 +14,16 @@ class App extends Component {
             inSignIn: false,
             sessionKey: '',
             isLogin: false,
-            todo: [],
+            todo: [{"title" : "산책하기", "content" : "오후 12시에 산책하기", "time" : null}],
             alertShow: false,
             alertMessage: '',
             email: '',
             inAddTodo: false,
             addTitle: '',
-            url: ''
+            url: '',
+            isModifyTodo: false,
+            selectedTodo: null,
+            selectedTodoId: null
         }
     }
 
@@ -71,6 +74,33 @@ class App extends Component {
         })
     }
 
+    _modifyTodo = (todoTitle, todoContent, todoTime) => {
+        let modifiedTodo = this.state.todo;
+        modifiedTodo[this.state.selectedTodoId].content = todoContent;
+        modifiedTodo[this.state.selectedTodoId].time = todoTime;
+        modifiedTodo[this.state.selectedTodoId].title = todoTitle;
+
+        this.setState({
+            todo: modifiedTodo,
+            inAddTodo: false
+        })
+    }
+
+    _updateAddTodo = (todoTitle, todoContent, todoTime) => {
+        let tempTodo = this.state.todo
+
+        tempTodo.push({
+            'title': todoTitle,
+            'content' : todoContent,
+            'time' : todoTime
+        });
+
+        this.setState({
+            todo: tempTodo
+        })
+        console.log(this.state.todo)
+    };
+
     componentDidMount() {
         if(this._sessionCheck() === 1){
             this.setState({
@@ -82,7 +112,34 @@ class App extends Component {
 
     render() {
         const close = () => {this.setState({inAddTodo: false})};
-        const addTodo = () => {this.setState({inAddTodo: true})}
+        const addTodo = () => {
+            this.setState({inAddTodo: true, addTitle: "할 일 추가하기", isModifyTodo: false})
+        };
+
+        const modiTodo = (id) => {
+            this.setState({
+                inAddTodo: true,
+                addTitle: "할 일 수정하기",
+                selectedTodo: this.state.todo[id],
+                isModifyTodo: true,
+                toModify: this._modifyTodo
+            });
+        };
+
+        const updateSelectedTodo = (id) => {
+            this.setState({selectedTodoId : id});
+        }
+
+        const deleteTodo = (id) => {
+            this.state.todo.splice(id,1);
+            let tempTodo = this.state.todo;
+            this.setState({
+                 todo: tempTodo
+            });
+
+            console.log(this.state.todo)
+        };
+
         return (
             <div className="App">
                 <div id='navbar'>
@@ -91,17 +148,25 @@ class App extends Component {
                 <Alert show={this.state.alertShow} dismissible onClose={this._closeAlert} variant="success">
                     {this.state.alertMessage}
                 </Alert>
-                <AddTodoForm
+                <TodoForm
                     show = {this.state.inAddTodo}
                     onHide = {close}
                     title = {this.state.addTitle}
                     url = {this.state.url}
                     email = {this.state.email}
+                    isModifyTodo = {this.state.isModifyTodo}
+                    selectedTodo = {this.state.selectedTodo}
+                    toModify = {this._modifyTodo}
+                    updateAddTodo = {this._updateAddTodo}
                 />
 
                 <TodoContainer
                     email={this.state.email}
                     addTodo={addTodo}
+                    modiTodo={modiTodo}
+                    todo={this.state.todo}
+                    deleteTodo={deleteTodo}
+                    setSelected={updateSelectedTodo}
                 />
             </div>
         );
