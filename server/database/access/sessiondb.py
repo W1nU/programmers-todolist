@@ -15,16 +15,16 @@ class rdis:
     def reset_timeout(self, id):
         if self.is_exist_session(id) == 1:
             self.connect.expire(id, self.timeout)
-            return '1'
+            return 1
         else:
-            return '0'
+            return 0
 
     def drop_session(self, id):
         if self.is_exist_session(id) == 1:
             self.connect.delete(id)
-            return '1'
+            return 1
         else:
-            return '0'
+            return 0
     
     def create_session(self, id):
         if self.is_exist_session(id) == 1:
@@ -39,7 +39,7 @@ class rdis:
 
     def open_session(self, id):
         if self.is_exist_session(id) == 0:
-            return '0'
+            return 0
         else:
             self.reset_timeout(id)
             return self.connect.get(id).decode('utf-8') # 세션이 있으면 세션키 리턴

@@ -64,9 +64,12 @@ class manager:
             return [0, "가입되지 않은 이메일 입니다"]
 
         if user[0][2].strip() == content['user_password']:
-            s_key = self.redisobj.create_session(content['user_email'])
+            if(self.redisobj.is_exist_session(content['user_email']) == 1):
+                s_key = self.redisobj.open_session(content['user_email'])
+            else:
+                s_key = self.redisobj.create_session(content['user_email'])
             return [1, "정상 로그인", s_key]
-        
+            
         else:
             return [0, "아이디와 비밀번호를 확인하세요"]
 
