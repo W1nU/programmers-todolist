@@ -39,10 +39,9 @@ class TodoForm extends Component {
             this.props.toModify(this.state.todoTitle, this.state.todoContent, this.state.time, this.state.priority);
             return; //여기서 수정후에 보내야함
         } else if (this.props.isModifyTodo === false) {
-            this.props.updateAddTodo(this.state.todoTitle, this.state.todoContent, this.state.time, this.state.priority)
+            this.props.updateAddTodo(this.state.todoTitle, this.state.todoContent, this.state.time, this.state.priority);
         }
         this._clearTime()
-
     };
 
 
@@ -50,31 +49,32 @@ class TodoForm extends Component {
         if (this.state.isModify === false) {
             this.setState({time: ""})
         }
+        this.props.onHide()
     };
 
     _setValueTitle = (e) => {
         if (this.props.isModifyTodo === true) {
             e.target.value = this.state.todoTitle
         }
-    }
+    };
 
     _setValueContent = (e) => {
         if (this.props.isModifyTodo === true) {
             e.target.value = this.state.todoContent
         }
-    }
+    };
 
     _setValueTime = (e) => {
         if (this.props.isModifyTodo === true && this.state.time !== null) {
             e.target.value = this.state.time
         }
-    }
+    };
 
     _setPriority = (e) => {
         this.setState({
             priority: e.target.value
         })
-    }
+    };
 
     _makePriorityOption = () => {
         let tempSelectFormJSX = [];

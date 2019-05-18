@@ -34,12 +34,15 @@ class App extends Component {
         })
     };
 
-    _login = (session_key) => {
+    _login = (sessionkey) => {
         this.setState({
-            sessionKey: session_key,
+            sessionKey: sessionkey,
             isLogin: true
         });
-        console.log(this.state)
+
+        sessionStorage.setItem("sessionKey",sessionkey);
+        sessionStorage.setItem("user_email", this.state.email);
+        sessionStorage.setItem("isLogin", true);
     };
 
     _sessionCheck = () => {
@@ -117,17 +120,15 @@ class App extends Component {
         this.setState({
             todo: tempTodo
         });
-        console.log(this.state.todo)
     };
 
     componentDidMount() {
-        if(this._sessionCheck() === 1){
-            this.setState({
-                sessionKey: localStorage.sesstionKey,
-                isLogin: true
-            })
-        }
-    }
+        this.setState({
+            sessionKey: sessionStorage.getItem("sessionKey"),
+            isLogin: sessionStorage.getItem("isLogin"),
+            email: sessionStorage.getItem("user_email")
+        })
+    };
 
     render() {
         const close = () => {this.setState({inAddTodo: false})};
@@ -160,7 +161,7 @@ class App extends Component {
 
         const updateSelectedTodo = (id) => {
             this.setState({selectedTodoId : id});
-        }
+        };
 
         const deleteTodo = (id) => {
             this.state.todo.splice(id,1);
@@ -168,8 +169,6 @@ class App extends Component {
             this.setState({
                  todo: tempTodo
             });
-
-            console.log(this.state.todo)
         };
 
         return (
