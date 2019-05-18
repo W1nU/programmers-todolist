@@ -84,11 +84,19 @@ class App extends Component {
         })
     };
 
-    _modifyTodo = (todoTitle, todoContent, todoTime) => {
+    _modifyTodo = (todoTitle, todoContent, todoTime, priority) => {
         let modifiedTodo = this.state.todo;
+        let selectedTodo = modifiedTodo[this.state.selectedTodoId];
+
         modifiedTodo[this.state.selectedTodoId].content = todoContent;
         modifiedTodo[this.state.selectedTodoId].time = todoTime;
         modifiedTodo[this.state.selectedTodoId].title = todoTitle;
+
+        if(priority-1 !== this.state.selectedTodoId){
+            console.log(this.state.selectedTodo, priority);
+            modifiedTodo.splice(this.state.selectedTodoId,1);
+            modifiedTodo.splice(priority - 1,0,selectedTodo)
+        }
 
         this.setState({
             todo: modifiedTodo,
@@ -96,10 +104,10 @@ class App extends Component {
         })
     };
 
-    _updateAddTodo = (todoTitle, todoContent, todoTime) => {
+    _updateAddTodo = (todoTitle, todoContent, todoTime, todoPriority) => {
         let tempTodo = this.state.todo;
 
-        tempTodo.push({
+        tempTodo.splice(todoPriority - 1, 0 ,{
             'title': todoTitle,
             'content' : todoContent,
             'time' : todoTime,
@@ -124,18 +132,11 @@ class App extends Component {
     render() {
         const close = () => {this.setState({inAddTodo: false})};
         const addTodo = () => {
-            let tempSelectFormJSX = [];
-            for (let i = 0; i <= this.state.todo.length; i++) {
-                tempSelectFormJSX.push(
-                    <option>{i + 1}</option>
-                )
-            }
 
             this.setState({
                 inAddTodo: true,
                 addTitle: "할 일 추가하기",
                 isModifyTodo: false,
-                prioritySelectOptionJSX : tempSelectFormJSX
             })
         };
 
@@ -189,7 +190,7 @@ class App extends Component {
                     selectedTodo = {this.state.selectedTodo}
                     toModify = {this._modifyTodo}
                     updateAddTodo = {this._updateAddTodo}
-                    priorityOption = {this.state.prioritySelectOptionJSX}
+                    todo = {this.state.todo}
                 />
 
                 <TodoContainer

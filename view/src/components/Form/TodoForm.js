@@ -11,15 +11,16 @@ class TodoForm extends Component {
         this.state = {
             todoTitle: '',
             todoContent: '',
-            email: this.props.email,
             qType: '',
             isModify: false,
             time: null,
             url: this.props.url,
             contentPlaceholder: "할 일의 내용을 입력하세요",
             titlePlaceholder: "할 일을 입력하세요",
-            selectFormJSX : []
+            selectFormJSX : [],
+            priority: 1
         }
+        console.log(this.props.todo)
     }
 
     _setTodoTitle = (e) => {
@@ -36,12 +37,13 @@ class TodoForm extends Component {
 
     _sendForm = () => {
         if (this.props.isModifyTodo === true) {
-            this.props.toModify(this.state.todoTitle, this.state.todoContent, this.state.time);
+            this.props.toModify(this.state.todoTitle, this.state.todoContent, this.state.time, this.state.priority);
             return; //여기서 수정후에 보내야함
         } else if (this.props.isModifyTodo === false) {
-            this.props.updateAddTodo(this.state.todoTitle, this.state.todoContent, this.state.time)
+            this.props.updateAddTodo(this.state.todoTitle, this.state.todoContent, this.state.time, this.state.priority)
         }
         this._clearTime()
+
     };
 
 
@@ -69,9 +71,30 @@ class TodoForm extends Component {
         }
     }
 
+    _setPriority = (e) => {
+        this.setState({
+            priority: e.target.value
+        })
+    }
+
+    _makePriorityOption = () => {
+        let tempSelectFormJSX = [];
+
+        let priorityOptionLength = this.props.isModifyTodo ? this.props.todo.length  : this.props.todo.length + 1;
+
+        if(priorityOptionLength === 0 && this.props.isModifyTodo === false) { priorityOptionLength = 1 } //처음에 투두가 하나도 없을 떄 설정
+        for (let i = 0; i < priorityOptionLength; i++) {
+            tempSelectFormJSX.push(<option value={i + 1}>{i + 1}</option>)
+        }
+
+    return tempSelectFormJSX
+}
+
     componentWillReceiveProps(nextProps, nextContext) {
+        //this._makePriorityOption();
         if (nextProps.isModifyTodo === true) {
             this.setState({
+                priority: 1,
                 isModify: nextProps.isModifyTodo,
                 todoTitle: nextProps.selectedTodo['title'],
                 todoContent: nextProps.selectedTodo['content'],
@@ -81,13 +104,13 @@ class TodoForm extends Component {
             })
         } else {
             this.setState({
+                priority: 1,
                 contentPlaceholder: "할 일의 내용을 입력하세요",
                 titlePlaceholder: "할 일을 입력하세요",
                 todoTitle: "",
                 todoContent: "",
                 time: null
             });
-            console.log(this.state)
         }
     }
 
@@ -121,8 +144,8 @@ class TodoForm extends Component {
                                       onChange={this._setTodoContent}
                                       placeholder={this.state.contentPlaceholder}/>
                         <Form.Label>우선순위</Form.Label>
-                        <Form.Control as="select">
-                            {this.props.priorityOption}
+                        <Form.Control as="select" onChange={this._setPriority}>
+                            {this._makePriorityOption()}
                         </Form.Control>
                         </Form.Group>
 
