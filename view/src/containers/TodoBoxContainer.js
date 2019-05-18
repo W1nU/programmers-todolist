@@ -13,6 +13,7 @@ const TodoBoxContainer = (props) => {
                 modiTodo={props.modiTodo}
                 deleteTodo={props.deleteTodo}
                 setSelected={props.setSelected}
+                doneTodo = {props.doneTodo}
             />
         </div>
     )

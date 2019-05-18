@@ -17,7 +17,8 @@ class TodoForm extends Component {
             time: null,
             url: this.props.url,
             contentPlaceholder: "할 일의 내용을 입력하세요",
-            titlePlaceholder: "할 일을 입력하세요"
+            titlePlaceholder: "할 일을 입력하세요",
+            selectFormJSX : []
         }
     }
 
@@ -33,26 +34,13 @@ class TodoForm extends Component {
         )
     };
 
-    _checkResponse = (data) => {
-
-    };
-
     _sendForm = () => {
         if (this.props.isModifyTodo === true) {
             this.props.toModify(this.state.todoTitle, this.state.todoContent, this.state.time);
             return; //여기서 수정후에 보내야함
         } else if (this.props.isModifyTodo === false) {
-            console.log("run")
             this.props.updateAddTodo(this.state.todoTitle, this.state.todoContent, this.state.time)
         }
-
-        axios.post(this.state.url, {
-                "todoTitle": this.state.email,
-                "todoContent": this.state.todoContent,
-                "user_email": this.state.email,
-                "q_type": this.state.qType
-            }
-        ).then(data => this._checkResponse(data)).catch(err => console.log(err));
         this._clearTime()
     };
 
@@ -94,7 +82,10 @@ class TodoForm extends Component {
         } else {
             this.setState({
                 contentPlaceholder: "할 일의 내용을 입력하세요",
-                titlePlaceholder: "할 일을 입력하세요"
+                titlePlaceholder: "할 일을 입력하세요",
+                todoTitle: "",
+                todoContent: "",
+                time: null
             });
             console.log(this.state)
         }
@@ -129,7 +120,11 @@ class TodoForm extends Component {
                         <Form.Control as="textarea" id="todo-content" onClick={this._setValueContent}
                                       onChange={this._setTodoContent}
                                       placeholder={this.state.contentPlaceholder}/>
-                    </Form.Group>
+                        <Form.Label>우선순위</Form.Label>
+                        <Form.Control as="select">
+                            {this.props.priorityOption}
+                        </Form.Control>
+                        </Form.Group>
 
                     <Form.Label>날짜</Form.Label>
                     <br/>

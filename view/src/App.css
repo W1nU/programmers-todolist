@@ -3,3 +3,16 @@
     height: 100vh;
     background-color: #f8f7f7;
 }
+
+.col-sm-4 {
+    padding: 10px;
+    float: left;
+
+}
+
+
+.col-sm-8 {
+    float: right;
+    padding: 20px;
+    background-color: #e1e0e0;
+}

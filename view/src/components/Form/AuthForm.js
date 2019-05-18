@@ -92,14 +92,30 @@ class AuthForm extends Component {
     };
 
     _sendForm = () => {
+        if(navigator.onLine === false){
+            this._alertControl("네트워크 연결을 확인하세요");
+            return;
+        }
+
         if(this._checkEmail() === 0 || this._checkPassword() === 0) { return 0 }
         else {
             axios.post(this.props.url, {
                     "user_email": this.state.email,
                     "user_password": Base64.stringify(sha256(this.state.password))
                 }
-            ).then(data => this._checkResponse(data)).catch(err => console.log(err));
+            ).then(data => this._checkResponse(data)).catch(err => {
+                this._alertControl("서버에 문제가 있습니다. 관리자에게 문의하세요");
+            });
         }
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        this.setState({
+            showAlert: false,
+            email : '',
+            password : '',
+            error: ""
+        })
     }
 
     render() {

@@ -1,3 +1,7 @@
 .todo-buttons{
     float: right;
 }
+
+#time-display{
+    float: left;
+}

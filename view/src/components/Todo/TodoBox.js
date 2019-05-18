@@ -26,28 +26,72 @@ class TodoBox extends Component {
         this.props.modiTodo(e.target.id.substring(14, e.target.id.length))
     };
 
+    _done = (e) => {
+        // this.props.doneTodo
+        console.log(e)
+        this.props.doneTodo(e.target.id.substring(12, e.target.className.length))
+    }
+
     _refreshTodo = () => {
 
         let tempTodoJSX = [];
         let tempTodoContentJSX = [];
+        let timeDisplay = null;
 
         for (let i = 0; i < this.props.todo.length; i++) {
-            tempTodoJSX.push(
-                <ListGroup.Item action href={"#" + i}>
-                    {this.props.todo[i]['title']}
-                    <Button size="sm" onClick={this._deleteTodo} className="todo-buttons" variant="danger"
-                            id={"button-remove#" + i}>삭제</Button>
-                    <div className="todo-buttons">&nbsp;</div>
-                    <Button onClick={this._modify} size="sm" className="todo-buttons" variant="warning"
-                            id={"button-remove#" + i}>수정</Button>
-                </ListGroup.Item>
-            );
+            if(this.state.todo[i]['time'] !== null) {
+                let getSelectedDate = new Date(this.state.todo[i]['time']);
+                let color = getSelectedDate - new Date() > 0 ? "light" : "dark";
+                timeDisplay = <Button variant={color} size="sm">{getSelectedDate.getFullYear().toString().substring(2)+"/"+ (getSelectedDate.getMonth() + 1) +"/"+getSelectedDate.getDate()}</Button>
+            }
 
-            tempTodoContentJSX.push(
-                <Tab.Pane eventKey={"#" + i}>
-                    <TodoContent content={this.props.todo[i]['content']}/>
-                </Tab.Pane>
-            )
+            if(this.state.todo[i]['isDone'] === false){
+                tempTodoJSX.push(
+                    <ListGroup.Item action href={"#" + i}>
+                        {i+1 + ". " + this.props.todo[i]['title']}
+
+                        <div className="todo-list-buttons">
+                            {timeDisplay}
+                            <Button size="sm" onClick={this._deleteTodo} className="todo-buttons" variant="danger"
+                                    id={"button-remove#" + i}>삭제</Button>
+                            <div className="todo-buttons">&nbsp;</div>
+                            <Button onClick={this._modify} size="sm" className="todo-buttons" variant="warning"
+                                    id={"button-remove#" + i}>수정</Button>
+                            <div className="todo-buttons">&nbsp;</div>
+                            <Button size="sm" onClick={this._done} className="todo-buttons" variant="success" id = {"button-done#" + i}>완료</Button>
+                        </div>
+                    </ListGroup.Item>
+                );
+
+                tempTodoContentJSX.push(
+                    <Tab.Pane eventKey={"#" + i}>
+                        <TodoContent content={this.props.todo[i]['content']}/>
+                    </Tab.Pane>
+                )
+            }
+
+            else if(this.state.todo[i]['idDone'] === true){
+                let tempStyle = {
+                    'text-decoration' : 'line-through'
+                }
+
+                tempTodoContentJSX.push(
+                <ListGroup.Item action href={"#" + i}>
+                    {i+1 + ". " + this.props.todo[i]['title']}
+
+                    <div className="todo-list-buttons">
+                        {timeDisplay}
+                        <Button size="sm" onClick={this._deleteTodo} className="todo-buttons" variant="danger"
+                                id={"button-remove#" + i}>삭제</Button>
+                        <div className="todo-buttons">&nbsp;</div>
+                        <Button size="sm" onClick={this._done} className="todo-buttons" variant="success" id = {"button-done#" + i} style={tempStyle}>완료</Button>
+                    </div>
+                </ListGroup.Item>
+                )
+            }
+
+
+
         }
         this.setState({
             todoJSX: tempTodoJSX,
@@ -65,10 +109,10 @@ class TodoBox extends Component {
 
     render() {
         return (
-            <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
+            <Tab.Container id="todo-list-group-tabs" defaultActiveKey="#link1">
                 <Row>
                     <Col sm={4}>
-                        <ListGroup>
+                        <ListGroup id="todoList">
                             {this.state.todoJSX}
                             <ListGroup.Item action onClick={this.props.addTodo}>
                                 + 추가하기

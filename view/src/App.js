@@ -14,7 +14,11 @@ class App extends Component {
             inSignIn: false,
             sessionKey: '',
             isLogin: false,
-            todo: [{"title" : "산책하기", "content" : "오후 12시에 산책하기", "time" : null}],
+            todo: [{
+                "title" : "산책하기",
+                "content" : "오후 12시에 산책하기",
+                "time" : null,
+                "isDone" : false}],
             alertShow: false,
             alertMessage: '',
             email: '',
@@ -23,7 +27,8 @@ class App extends Component {
             url: '',
             isModifyTodo: false,
             selectedTodo: null,
-            selectedTodoId: null
+            selectedTodoId: null,
+            prioritySelectOptionJSX: []
         }
     }
 
@@ -74,6 +79,16 @@ class App extends Component {
         })
     }
 
+    _doneTodo = (id) => {
+        console.log(id)
+        let tempTodo = this.state.todo;
+        tempTodo[id]['isDone'] = true;
+
+        this.setState({
+            todo: tempTodo
+        })
+    }
+
     _modifyTodo = (todoTitle, todoContent, todoTime) => {
         let modifiedTodo = this.state.todo;
         modifiedTodo[this.state.selectedTodoId].content = todoContent;
@@ -87,12 +102,13 @@ class App extends Component {
     }
 
     _updateAddTodo = (todoTitle, todoContent, todoTime) => {
-        let tempTodo = this.state.todo
+        let tempTodo = this.state.todo;
 
         tempTodo.push({
             'title': todoTitle,
             'content' : todoContent,
-            'time' : todoTime
+            'time' : todoTime,
+            'isdone' : false
         });
 
         this.setState({
@@ -113,16 +129,36 @@ class App extends Component {
     render() {
         const close = () => {this.setState({inAddTodo: false})};
         const addTodo = () => {
-            this.setState({inAddTodo: true, addTitle: "할 일 추가하기", isModifyTodo: false})
+            let tempSelectFormJSX = [];
+            for (let i = 0; i <= this.state.todo.length; i++) {
+                tempSelectFormJSX.push(
+                    <option>{i + 1}</option>
+                )
+            }
+
+            this.setState({
+                inAddTodo: true,
+                addTitle: "할 일 추가하기",
+                isModifyTodo: false,
+                prioritySelectOptionJSX : tempSelectFormJSX
+            })
         };
 
         const modiTodo = (id) => {
+            let tempSelectFormJSX = [];
+            for (let i = 0; i < this.state.todo.length; i++) {
+                tempSelectFormJSX.push(
+                    <option>{i + 1}</option>
+                )
+            }
+
             this.setState({
                 inAddTodo: true,
                 addTitle: "할 일 수정하기",
                 selectedTodo: this.state.todo[id],
                 isModifyTodo: true,
-                toModify: this._modifyTodo
+                toModify: this._modifyTodo,
+                prioritySelectOptionJSX : tempSelectFormJSX
             });
         };
 
@@ -158,6 +194,7 @@ class App extends Component {
                     selectedTodo = {this.state.selectedTodo}
                     toModify = {this._modifyTodo}
                     updateAddTodo = {this._updateAddTodo}
+                    priorityOption = {this.state.prioritySelectOptionJSX}
                 />
 
                 <TodoContainer
@@ -167,6 +204,7 @@ class App extends Component {
                     todo={this.state.todo}
                     deleteTodo={deleteTodo}
                     setSelected={updateSelectedTodo}
+                    doneTodo = {this._doneTodo}
                 />
             </div>
         );
