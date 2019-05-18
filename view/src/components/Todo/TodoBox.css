@@ -5,3 +5,7 @@
 #time-display{
     float: left;
 }
+
+.done-todo{
+    text-decoration-line: line-through;
+}

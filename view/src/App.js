@@ -108,7 +108,7 @@ class App extends Component {
             'title': todoTitle,
             'content' : todoContent,
             'time' : todoTime,
-            'isdone' : false
+            'isDone' : false
         });
 
         this.setState({

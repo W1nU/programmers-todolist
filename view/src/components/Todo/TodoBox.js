@@ -70,23 +70,24 @@ class TodoBox extends Component {
                 )
             }
 
-            else if(this.state.todo[i]['idDone'] === true){
-                let tempStyle = {
-                    'text-decoration' : 'line-through'
-                }
+            else if(this.state.todo[i]['isDone'] === true){
+                tempTodoJSX.push(
+                    <ListGroup.Item action href={"#" + i} className="done-todo">
+                        {i+1 + ". " + this.props.todo[i]['title']}
 
+                        <div className="todo-list-buttons">
+                            {timeDisplay}
+                            <Button size="sm" onClick={this._deleteTodo} className="todo-buttons" variant="danger"
+                                    id={"button-remove#" + i}>삭제</Button>
+                            <div className="todo-buttons">&nbsp;</div>
+                            <Button size="sm" onClick={this._done} className="todo-buttons" variant="success" id = {"button-done#" + i} disabled>완료</Button>
+                        </div>
+                    </ListGroup.Item>
+                )
                 tempTodoContentJSX.push(
-                <ListGroup.Item action href={"#" + i}>
-                    {i+1 + ". " + this.props.todo[i]['title']}
-
-                    <div className="todo-list-buttons">
-                        {timeDisplay}
-                        <Button size="sm" onClick={this._deleteTodo} className="todo-buttons" variant="danger"
-                                id={"button-remove#" + i}>삭제</Button>
-                        <div className="todo-buttons">&nbsp;</div>
-                        <Button size="sm" onClick={this._done} className="todo-buttons" variant="success" id = {"button-done#" + i} style={tempStyle}>완료</Button>
-                    </div>
-                </ListGroup.Item>
+                    <Tab.Pane eventKey={"#" + i}>
+                        <TodoContent content={this.props.todo[i]['content']}/>
+                    </Tab.Pane>
                 )
             }
 
