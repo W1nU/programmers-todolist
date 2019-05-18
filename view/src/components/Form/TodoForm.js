@@ -19,8 +19,7 @@ class TodoForm extends Component {
             titlePlaceholder: "할 일을 입력하세요",
             selectFormJSX : [],
             priority: 1
-        }
-        console.log(this.props.todo)
+        };
     }
 
     _setTodoTitle = (e) => {
