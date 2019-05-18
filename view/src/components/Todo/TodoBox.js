@@ -27,16 +27,35 @@ class TodoBox extends Component {
     };
 
     _done = (e) => {
-        // this.props.doneTodo
-        console.log(e)
         this.props.doneTodo(e.target.id.substring(12, e.target.className.length))
     }
+
+    _parseBrTag = (text) => {
+        let temp = '';
+        let tempJSX = [];
+
+        for (let j = 0; j <= text.length; j++) {
+            if (j === text.length) {
+                tempJSX.push(temp);
+            }
+
+            if (text[j] === '\n') {
+                tempJSX.push(temp);
+                temp = '';
+                tempJSX.push(<br/>)
+            } else {
+                temp += text[j];
+            }
+        }
+        return tempJSX
+    };
 
     _refreshTodo = () => {
 
         let tempTodoJSX = [];
         let tempTodoContentJSX = [];
         let timeDisplay = null;
+        let tempTodoContent = null;
 
         for (let i = 0; i < this.props.todo.length; i++) {
             if(this.state.todo[i]['time'] !== null) {
@@ -63,9 +82,12 @@ class TodoBox extends Component {
                     </ListGroup.Item>
                 );
 
+                tempTodoContent = this._parseBrTag(this.state.todo[i]['content']);
+
                 tempTodoContentJSX.push(
                     <Tab.Pane eventKey={"#" + i}>
-                        <TodoContent content={this.props.todo[i]['content']}/>
+                        {/*<TodoContent content={this.props.todo[i]['content']}/>*/}
+                        <TodoContent content={tempTodoContent}/>
                     </Tab.Pane>
                 )
             }
@@ -90,9 +112,6 @@ class TodoBox extends Component {
                     </Tab.Pane>
                 )
             }
-
-
-
         }
         this.setState({
             todoJSX: tempTodoJSX,
@@ -122,6 +141,10 @@ class TodoBox extends Component {
                     </Col>
                     <Col sm={8}>
                         <Tab.Content>
+                            {/*{this.state.todoContentJSX.map((v,k)=>{*/}
+                                {/*console.log(v)*/}
+                                {/*return v;*/}
+                            {/*})}*/}
                             {this.state.todoContentJSX}
                         </Tab.Content>
                     </Col>

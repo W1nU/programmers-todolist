@@ -14,11 +14,7 @@ class App extends Component {
             inSignIn: false,
             sessionKey: '',
             isLogin: false,
-            todo: [{
-                "title" : "산책하기",
-                "content" : "오후 12시에 산책하기",
-                "time" : null,
-                "isDone" : false}],
+            todo: [],
             alertShow: false,
             alertMessage: '',
             email: '',
@@ -36,7 +32,7 @@ class App extends Component {
         this.setState({
             email:email
         })
-    }
+    };
 
     _login = (session_key) => {
         this.setState({
@@ -77,17 +73,16 @@ class App extends Component {
             alertShow: true,
             alertMessage: M
         })
-    }
+    };
 
     _doneTodo = (id) => {
-        console.log(id)
         let tempTodo = this.state.todo;
         tempTodo[id]['isDone'] = true;
 
         this.setState({
             todo: tempTodo
         })
-    }
+    };
 
     _modifyTodo = (todoTitle, todoContent, todoTime) => {
         let modifiedTodo = this.state.todo;
@@ -99,7 +94,7 @@ class App extends Component {
             todo: modifiedTodo,
             inAddTodo: false
         })
-    }
+    };
 
     _updateAddTodo = (todoTitle, todoContent, todoTime) => {
         let tempTodo = this.state.todo;
@@ -113,7 +108,7 @@ class App extends Component {
 
         this.setState({
             todo: tempTodo
-        })
+        });
         console.log(this.state.todo)
     };
 
