@@ -45,13 +45,16 @@ class App extends Component {
 
     _getTodo = () => {
         axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/get_todo", {
-            "user_email": this.state.email,
+            "user_email": sessionStorage.user_email,
             "sessionKey" : sessionStorage.sessionKey
         }).then(data => {
-            if(data[0] === 2){
+            console.log(data)
+            if(data.data[0] === 2){
                 this._displayAlert("세션 오류. 다시 로그인 하세요.")
             }
-
+            else if(data.data[0] == 0){
+                return;
+            }
             this.setState({
                 todo:JSON.parse(data[1])
             })
@@ -68,16 +71,19 @@ class App extends Component {
             sessionStorage.setItem("user_email", this.state.email);
             sessionStorage.setItem("isLogin", true);
             sessionStorage.setItem("sessionKey", sessionkey);
-        }, 0)
+        }, 0);
 
         if(!localStorage.todo){ // 로컬 스토리지에 투두 기록이 있으면 그것을 우선 사용, 없으면 서버에서 가져와 사용
             this._getTodo();
         }
         else{
+            console.log(sessionStorage)
             axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
                 "user_email": sessionStorage.user_email,
                 "sessionKey": sessionStorage.sessionKey,
                 "todo": localStorage.todo
+            }).then(data => {
+                console.log(data)
             })
         }
 
@@ -104,9 +110,11 @@ class App extends Component {
             }
         ).then(data => {
             if (data.data[0] === 1) {
-                this._setLoginState()
+                this._setLoginState();
+                this._getTodo();
+
             } else if (data.data[0] === 2) {
-                sessionStorage.clear()
+                sessionStorage.clear();
                 this._displayAlert("세션 오류입니다. 다시 로그인 하세요.");
             }
         }).catch(err => console.log(err))
@@ -170,9 +178,9 @@ class App extends Component {
             }
         }
         axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
-            "user_email": localStorage.user_email,
+            "user_email": sessionStorage.user_email,
             "sessionKey" : sessionStorage.sessionKey,
-            "todo": JSON.stringify(this.state.todo)
+            "todo": JSON.stringify(localStorage.todo)
         }).then(data => {
             if (data[0] === 2) {
                 this._logOut();
@@ -212,10 +220,12 @@ class App extends Component {
 
             axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
                 "user_email": sessionStorage.user_email,
-                "todo": JSON.stringify(this.state.todo),
-                "sessionKey": sessionStorage.sessionKey
+                "sessionKey": sessionStorage.sessionKey,
+                "todo": JSON.stringify(this.state.todo)
+
             }).then(data => {
-                if (data[0] === 2) {
+                console.log(data)
+                if (data.data[0] === 2) {
                     this._logOut();
                     this._displayAlert("세션 오류압나다. 다시 로그린 하세요.")
                 } else {
