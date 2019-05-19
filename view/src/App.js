@@ -60,24 +60,19 @@ class App extends Component {
     };
 
     _sessionCheck = () => {
-        if(localStorage.sesstionKey){
-            axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/check_session", {
-                    "sessionKey": localStorage.sesstionKey,
-                    "user_email": localStorage.user_email
-                }
-            ).then(data => (data) => {
-                console.log(data);
-                if(data[0] === true){
-                    return 1
-                }
-                else{
-                    return 0
-                }
-            }).catch(err => console.log(err))
-        }
-        else{
-            return 0
-        }
+        console.log("run")
+        axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/check_session", {
+                "sessionKey": localStorage.sesstionKey,
+                "user_email": localStorage.user_email
+            }
+        ).then(data => {
+            console.log(data);
+            if (data[0] === true) {
+                return 1
+            } else {
+                return 0
+            }
+        }).catch(err => console.log(err))
     };
 
     _closeAlert = () => {
@@ -138,15 +133,13 @@ class App extends Component {
     };
 
     componentDidMount() {
-        this._sessionCheck();
-        this.setState({
-            sessionKey: sessionStorage.getItem("sessionKey"),
-            isLogin: sessionStorage.getItem("isLogin")==='true',
-            email: sessionStorage.getItem("user_email")
-        })
-        setTimeout(()=>{
-            console.log(this.state.isLogin)
-        },0)
+        if(this._sessionCheck() === 1){
+            this.setState({
+                sessionKey: sessionStorage.getItem("sessionKey"),
+                isLogin: sessionStorage.getItem("isLogin")==='true',
+                email: sessionStorage.getItem("user_email")
+            })
+        }
     };
 
     render() {
