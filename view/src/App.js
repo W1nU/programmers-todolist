@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Alert, Spinner} from 'react-bootstrap';
+import {Alert} from 'react-bootstrap';
 import NavigationBar from './components/NavigationBar/Navigationbar';
 import TodoContainer from './containers/TodoBoxContainer';
 import TodoForm from './components/Form/TodoForm';
@@ -21,7 +21,7 @@ class App extends Component {
             subject: {title: 'WEB', sub: "World wide web"},
             inSignIn: false,
             sessionKey: '',
-            isLogin: false,
+            isLogin: sessionStorage.isLogin === "true",
             todo: JSON.parse(localStorage.todo),
             alertShow: false,
             alertMessage: '',
@@ -37,7 +37,6 @@ class App extends Component {
     }
 
     _setUserEmail = (email) => {
-        console.log(email);
         this.setState({
             email: email
         })
@@ -54,7 +53,6 @@ class App extends Component {
             } else if (data.data[0] === 0) {
                 this._displayAlert(data.data[1])
             } else {
-                console.log(data.data[1])
                 this.setState({
                     todo: JSON.parse(data.data[1])
                 });
@@ -71,19 +69,22 @@ class App extends Component {
             isLogin: true
         });
 
-        setTimeout(() => {
-            sessionStorage.setItem("user_email", this.state.email);
-            sessionStorage.setItem("isLogin", true);
-            sessionStorage.setItem("sessionKey", sessionkey);
-        }, 0);
+        sessionStorage.setItem("user_email", this.state.email);
+        sessionStorage.setItem("isLogin", true);
+        sessionStorage.setItem("sessionKey", sessionkey);
 
-        if (localStorage.todo === null) { // 로컬 스토리지에 투두 기록이 있으면 그것을 우선 사용, 없으면 서버에서 가져와 사용
+
+        if (localStorage.todo === []) { // 로컬 스토리지에 투두 기록이 있으면 그것을 우선 사용, 없으면 서버에서 가져와 사용
             this._getTodo();
-        } else {
+        }
+
+        else {
+            console.log(sessionStorage);
             axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
                 "user_email": sessionStorage.user_email,
                 "sessionKey": sessionStorage.sessionKey,
                 "todo": localStorage.todo
+
             }).then(data => {
                 if (data.data[0] === 0) {
                     this._displayAlert(data.data[1])
@@ -107,11 +108,10 @@ class App extends Component {
     };
 
     _sessionCheck = () => {
-        axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/check_session", {
-                "sessionKey": sessionStorage.sessionKey,
-                "user_email": sessionStorage.user_email
-            }
-        ).then(data => {
+        axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
+            "user_email": sessionStorage.user_email,
+            "sessionKey": sessionStorage.sessionKey,
+        }).then(data => {
             if (data.data[0] === 1) {
                 this._setLoginState();
                 this._getTodo();
@@ -185,7 +185,7 @@ class App extends Component {
         axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
             "user_email": sessionStorage.user_email,
             "sessionKey": sessionStorage.sessionKey,
-            "todo": JSON.stringify(localStorage.todo)
+            "todo": localStorage.todo
         }).then(data => {
             if (data.data[0] === 2) {
                 this._logOut();
@@ -215,10 +215,6 @@ class App extends Component {
 
         localStorage.todo = JSON.stringify(this.state.todo);
 
-        if (navigator.onLine === false) {
-            this._displayAlert("인터넷 연결을 확인하세요.")
-            return;
-        }
         if (this.state.isLogin === true) {
             if (navigator.onLine === false) {
                 this._displayAlert("인터넷 연결을 확인하세요.");
@@ -246,12 +242,15 @@ class App extends Component {
     ;
 
     componentDidMount() {
-        this._sessionCheck()
-    }
-    ;
-
+        if(this.state.isLogin === true){
+            this._sessionCheck()
+        }
+    };
 
     render() {
+
+        console.log(this.state.todo)
+        console.log(typeof this.state.todo)
         const close = () => {
             this.setState({inAddTodo: false})
         };
@@ -277,7 +276,6 @@ class App extends Component {
                 addTitle: "할 일 수정하기",
                 selectedTodo: this.state.todo[id],
                 isModifyTodo: true,
-                toModify: this._modifyTodo,
                 prioritySelectOptionJSX: tempSelectFormJSX
             });
         };
