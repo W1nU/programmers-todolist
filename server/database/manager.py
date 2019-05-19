@@ -11,6 +11,7 @@ class manager:
             try:
                 return func(*args)
             except Exception as e:
+                print(e)
                 return {'status': 0, 'contents' : "데이터베이스 서버에 문제가 있습니다. 관리자에게 문의하세요"}
         return inner
 
@@ -77,9 +78,10 @@ class manager:
             return [2, "세션 오류"]
     
     def get_todo(self, content):
-        if self.session_check(content['sessionKey'], content['user_email'])[0] == 1:
-            if maria.is_exist_todo(content) == True:
-                return maria.find_user_todo(content['user_email'])[0][0]
+        if self.session_check(content)[0] == 1:
+            if self.maria.is_exist_todo(content) == True:
+                return self.maria.find_user_todo(content['user_email'])[0][0]
+
             else:
                 return [0, "해당 사용자의 투두가 존재하지 않음"]
         

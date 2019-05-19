@@ -37,7 +37,7 @@ class maria:
         self.execute(sql)
 
     def is_exist_todo(self, content):
-        sql = f"""SELECT EXISTS(SELCECT * FROM todo WHERE user_email = '{content['user_email']}'');"""
+        sql = f"""SELECT EXISTS(SELECT * FROM todo WHERE user_email = '{content['user_email']}');"""
         return self.s_execute(sql)
 
     def find_user(self, content):

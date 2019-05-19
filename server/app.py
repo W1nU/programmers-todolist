@@ -40,6 +40,7 @@ def update_todo():
 @app.route("/get_todo", methods = ["POST", "GET"])
 def get_todo():
     data = request.json
-    return json.dumps(db_manager.get_todo(data), ensure_ascii=false)
+    print(data)
+    return json.dumps(db_manager.get_todo(data), ensure_ascii=False)
 
 app.run('0.0.0.0')
