@@ -51,3 +51,7 @@ class maria:
     def create_todo(self, content):
         sql = f"""INSERT INTO todo(user_email, todo) VALUES ('{content['user_email']}', '{content['todo']}');"""
         self.execute(sql)
+
+    def find_user_todo(self, content):
+        sql = f"""SELECT todo FROM todo WHERE user_email = '{content['user_email']}';"""
+        return self.s_execute(sql)

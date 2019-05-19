@@ -65,11 +65,22 @@ class manager:
                 maria.update_todo(content)
             else:
                 maria.create_todo(content)
-
             return [1, "정상 수정"]
         
         else:
             return [2, "세션 오류"]
+    
+    def get_todo(self, content):
+        if(self.session_check(content['sessionKey'], content['user_email'])) == 1:
+            if(maria.is_exist_todo(content)) == True:
+                return maria.find_user_todo(content['user_email'])[0][0]
+            else:
+                return [0, "해당 사용자의 투두가 존재하지 않음"]
+        
+        else:
+            return [2, "세션 오류"]
+
+
     
     
 

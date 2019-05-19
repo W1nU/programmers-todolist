@@ -33,4 +33,9 @@ def add_todo():
     data = request.json
     return json.dumps(db_manager.update_todo(data))
 
+@app.route("/get_todo", methods = ["POST", "GET"])
+def get_todo():
+    data = request.json
+    return
+
 app.run('0.0.0.0')
