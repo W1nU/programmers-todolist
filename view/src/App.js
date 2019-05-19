@@ -47,7 +47,6 @@ class App extends Component {
             "user_email": sessionStorage.user_email,
             "sessionKey": sessionStorage.sessionKey
         }).then(data => {
-            console.log(data.data[1]);
             if (data.data[0] === 2) {
                 this._displayAlert("세션 오류. 다시 로그인 하세요.")
             } else if (data.data[0] === 0) {
@@ -79,7 +78,6 @@ class App extends Component {
         }
 
         else {
-            console.log(sessionStorage);
             axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
                 "user_email": sessionStorage.user_email,
                 "sessionKey": sessionStorage.sessionKey,
@@ -164,7 +162,6 @@ class App extends Component {
         modifiedTodo[this.state.selectedTodoId].title = todoTitle;
 
         if (priority - 1 !== this.state.selectedTodoId) {
-            console.log(this.state.selectedTodo, priority);
             modifiedTodo.splice(this.state.selectedTodoId, 1);
             modifiedTodo.splice(priority - 1, 0, selectedTodo)
         }
@@ -227,7 +224,6 @@ class App extends Component {
                 "todo": JSON.stringify(this.state.todo)
 
             }).then(data => {
-                console.log(data);
                 if (data.data[0] === 2) {
                     this._logOut();
                     this._displayAlert("세션 오류입나다. 다시 로그린 하세요.")
@@ -249,8 +245,7 @@ class App extends Component {
 
     render() {
 
-        console.log(this.state.todo)
-        console.log(typeof this.state.todo)
+
         const close = () => {
             this.setState({inAddTodo: false})
         };

@@ -17,7 +17,6 @@ class AuthForm extends Component {
     }
 
     _setUserEmail = (e) => {
-        console.log(this.props);
         this.setState({
             email: e.target.value
         })
@@ -30,7 +29,6 @@ class AuthForm extends Component {
     };
 
     _alertControl = (errormsg) => {
-        console.log(errormsg);
         setTimeout( () => this.setState({
             error: errormsg,
             showAlert: true,
@@ -44,7 +42,6 @@ class AuthForm extends Component {
     };
 
     _checkEmail = () => {
-        console.log(this.state)
         let exptext = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
         if(exptext.test(this.state.email) === false){
