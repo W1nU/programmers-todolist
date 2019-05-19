@@ -45,6 +45,7 @@ class manager:
 
     def login(self, content):
         user = self.maria.find_user(content)
+        print(user)
         if self.check_duplicate("user_email", content)[0] == 0:
             return [0, "가입되지 않은 이메일 입니다"]
 
@@ -57,7 +58,6 @@ class manager:
 
         else:
             return [0, "아이디와 비밀번호를 확인하세요"]
-
     
     def update_todo(self, content):
         if(self.session_check(content['sessionKey'], content['user_email'])) == 1:

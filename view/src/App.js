@@ -66,6 +66,7 @@ class App extends Component {
                     "user_email": localStorage.user_email
                 }
             ).then(data => (data) => {
+                console.log(data);
                 if(data[0] === true){
                     return 1
                 }
@@ -137,6 +138,7 @@ class App extends Component {
     };
 
     componentDidMount() {
+        this._sessionCheck();
         this.setState({
             sessionKey: sessionStorage.getItem("sessionKey"),
             isLogin: sessionStorage.getItem("isLogin")==='true',
