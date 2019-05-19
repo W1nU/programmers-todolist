@@ -18,7 +18,7 @@ class manager:
     @check_db_server
     def session_check(self, content):
         s_key = self.redisobj.open_session(content['user_email'])
-
+        
         if s_key == content['sessionKey']:
             return [1, "세션 확인 성공"]
         else:
@@ -67,11 +67,14 @@ class manager:
 
     def update_todo(self, content):
         print(content)
-        if self.session_check(content['sessionKey'], content['user_email']) == 1:
-            if maria.is_exist_todo(content) == True:
-                maria.update_todo(content)
+        if self.session_check(content)[0] == 1:
+            print("run")
+            if self.maria.is_exist_todo(content)[0][0] == True:
+                print("1")
+                self.maria.update_todo(content)
             else:
-                maria.create_todo(content)
+                print("2")
+                self.maria.create_todo(content)
             return [1, "정상 수정"]
         
         else:
@@ -79,7 +82,7 @@ class manager:
     
     def get_todo(self, content):
         if self.session_check(content)[0] == 1:
-            if self.maria.is_exist_todo(content) == True:
+            if self.maria.is_exist_todo(content)[0][0] == True:
                 return self.maria.find_user_todo(content['user_email'])[0][0]
 
             else:
