@@ -62,8 +62,8 @@ class App extends Component {
     _sessionCheck = () => {
         console.log("run")
         axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/check_session", {
-                "sessionKey": localStorage.sesstionKey,
-                "user_email": localStorage.user_email
+                "sessionKey": sessionStorage.sesstionKey,
+                "user_email": sessionStorage.user_email
             }
         ).then(data => {
             console.log(data);
