@@ -60,14 +60,14 @@ class TodoBox extends Component {
         for (let i = 0; i < this.props.todo.length; i++) {
             timeDisplay = null;
 
-            if(this.state.todo[i]['time'] !== null) {
-                let getSelectedDate = new Date(this.state.todo[i]['time']);
+            if(this.props.todo[i]['time'] !== null) {
+                let getSelectedDate = new Date(this.props.todo[i]['time']);
                 let color = getSelectedDate - new Date() > 0 ? "light" : "dark";
 
-                timeDisplay = <Button disabled variant={color} size="sm">{getSelectedDate.getFullYear().toString().substring(2)+"/"+ (getSelectedDate.getMonth() + 1) +"/"+getSelectedDate.getDate()}</Button>
+                timeDisplay = <Button variant={color} size="sm">{getSelectedDate.getFullYear().toString().substring(2)+"/"+ (getSelectedDate.getMonth() + 1) +"/"+getSelectedDate.getDate()}</Button>
             }
 
-            if(this.state.todo[i]['isDone'] === false){
+            if(this.props.todo[i]['isDone'] === false){
                 tempTodoJSX.push(
                     <ListGroup.Item action href={"#" + i}>
                         {i+1 + ". " + this.props.todo[i]['title']}
@@ -85,7 +85,7 @@ class TodoBox extends Component {
                     </ListGroup.Item>
                 );
 
-                tempTodoContent = this._parseBrTag(this.state.todo[i]['content']);
+                tempTodoContent = this._parseBrTag(this.props.todo[i]['content']);
 
                 tempTodoContentJSX.push(
                     <Tab.Pane eventKey={"#" + i}>
@@ -126,10 +126,12 @@ class TodoBox extends Component {
     }
 
     componentDidMount() {
-        this._refreshTodo()
+        setTimeout( () => {this._refreshTodo()}, 1000)
     }
 
+
     render() {
+
         return (
             <Tab.Container id="todo-list-group-tabs" defaultActiveKey="#link1">
                 <Row>
@@ -143,17 +145,12 @@ class TodoBox extends Component {
                     </Col>
                     <Col sm={8}>
                         <Tab.Content>
-                            {/*{this.state.todoContentJSX.map((v,k)=>{*/}
-                                {/*console.log(v)*/}
-                                {/*return v;*/}
-                            {/*})}*/}
                             {this.state.todoContentJSX}
                         </Tab.Content>
                     </Col>
                 </Row>
             </Tab.Container>
         )
-
     }
 }
 

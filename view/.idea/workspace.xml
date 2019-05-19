@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="3888ba0e-f629-43a9-be3e-ff2b388cf486" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Todo/TodoBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Todo/TodoBox.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Todo/TodoBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Todo/TodoBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/TodoBoxContainer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/TodoBoxContainer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/TodoBoxContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/TodoBoxContainer.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,10 +25,31 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoContent.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/containers/TodoBoxContainer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/NavigationBar/Navigationbar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            <state relative-caret-position="64">
+              <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -34,8 +60,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="219" lean-forward="true" selection-start-line="219" selection-end-line="219" />
+            <state relative-caret-position="414">
+              <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -47,7 +73,7 @@
         <entry file="file://$PROJECT_DIR$/src/containers/TodoBoxContainer.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
-              <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+              <caret line="6" column="30" lean-forward="true" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -55,8 +81,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoBox.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="39" lean-forward="true" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+            <state relative-caret-position="234">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -73,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            <state relative-caret-position="360">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -82,11 +108,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoBox.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="66" column="47" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
+            <state relative-caret-position="387">
+              <caret line="56" column="22" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="22" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <marker date="1558210115581" expanded="true" signature="5436:5618" ph="..." />
               </folding>
             </state>
           </provider>
@@ -123,6 +148,12 @@
       <find>local</find>
       <find>update_todo</find>
       <find>setEmail</find>
+      <find>userEmail</find>
+      <find>need</find>
+      <find>get</find>
+      <find>localstorage</find>
+      <find>displa</find>
+      <find>displayA</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -154,15 +185,15 @@
         <option value="$PROJECT_DIR$/src/components/Alerts.js" />
         <option value="$PROJECT_DIR$/src/components/Form/AddTodoForm.js" />
         <option value="$PROJECT_DIR$/src/components/Form/todoForm.js" />
+        <option value="$PROJECT_DIR$/src/components/NavigationBar/Navigationbar.js" />
+        <option value="$PROJECT_DIR$/src/components/Form/AuthForm.js" />
+        <option value="$PROJECT_DIR$/src/components/Form/TodoForm.js" />
+        <option value="$PROJECT_DIR$/src/components/Form/TodoForm.css" />
         <option value="$PROJECT_DIR$/src/containers/TodoBoxContainer.js" />
         <option value="$PROJECT_DIR$/src/components/Todo/TodoBox.css" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/containers/TodoBoxContainer.css" />
-        <option value="$PROJECT_DIR$/src/components/NavigationBar/Navigationbar.js" />
-        <option value="$PROJECT_DIR$/src/components/Form/AuthForm.js" />
         <option value="$PROJECT_DIR$/src/components/Todo/TodoBox.js" />
-        <option value="$PROJECT_DIR$/src/components/Form/TodoForm.js" />
-        <option value="$PROJECT_DIR$/src/components/Form/TodoForm.css" />
         <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
@@ -174,10 +205,10 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="960" />
-    <option name="y" value="23" />
-    <option name="width" value="960" />
-    <option name="height" value="1105" />
+    <option name="x" value="154" />
+    <option name="y" value="39" />
+    <option name="width" value="1280" />
+    <option name="height" value="1342" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -318,24 +349,25 @@
       <workItem from="1557741527443" duration="3645000" />
       <workItem from="1557751201848" duration="51000" />
       <workItem from="1557751747372" duration="64244000" />
-      <workItem from="1558114859585" duration="35905000" />
+      <workItem from="1558114859585" duration="38555000" />
+      <workItem from="1558253401025" duration="3344000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103845000" />
+    <option name="totallyTimeSpent" value="109839000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="960" y="23" width="960" height="1105" extended-state="0" />
+    <frame x="154" y="39" width="1280" height="1342" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4984584" visible="true" weight="0.22364217" />
-      <window_info id="Structure" order="1" sideWeight="0.5015416" side_tool="true" visible="true" weight="0.22364217" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4983471" visible="true" weight="0.16679905" />
+      <window_info id="Structure" order="1" sideWeight="0.5016529" side_tool="true" weight="0.16679905" />
       <window_info id="npm" order="2" side_tool="true" weight="0.3290735" />
       <window_info id="Favorites" order="3" side_tool="true" weight="0.3290735" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297456" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.039486673" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.032" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3264" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -350,22 +382,22 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2239873" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection Results" order="0" visible="true" weight="0.2696" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.3297456" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.3258317" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.39921722" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3297456" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4983471" visible="true" weight="0.16679905" />
+      <window_info id="Structure" order="1" sideWeight="0.5016529" side_tool="true" visible="true" weight="0.16679905" />
+      <window_info id="npm" order="2" side_tool="true" weight="0.3290735" />
+      <window_info id="Favorites" order="3" side_tool="true" weight="0.3290735" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3297456" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.032" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3264" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3297456" />
+      <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.2696" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -457,83 +489,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoItem.js" />
     <entry file="file://$PROJECT_DIR$/src/ErrorConst.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoContent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/TodoBoxContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/TodoBoxContainer.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoBoxHeader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoBox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="66" column="47" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <marker date="1558210115581" expanded="true" signature="5436:5618" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Form/TodoForm.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoBox.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="39" lean-forward="true" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -551,16 +511,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/NavigationBar/Navigationbar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Form/AuthForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -571,10 +521,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/TodoBoxContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Form/TodoForm.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoBox.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/NavigationBar/Navigationbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/TodoBoxContainer.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="30" lean-forward="true" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoBoxHeader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="56" column="22" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="219" lean-forward="true" selection-start-line="219" selection-end-line="219" />
+        <state relative-caret-position="414">
+          <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

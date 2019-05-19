@@ -14,6 +14,7 @@ const TodoBoxContainer = (props) => {
                 deleteTodo={props.deleteTodo}
                 setSelected={props.setSelected}
                 doneTodo = {props.doneTodo}
+                needRefreshTodo = {props.needRefreshTodo}
             />
         </div>
     )

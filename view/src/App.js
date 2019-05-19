@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Alert} from 'react-bootstrap';
+import {Alert, Spinner} from 'react-bootstrap';
 import NavigationBar from './components/NavigationBar/Navigationbar';
 import TodoContainer from './containers/TodoBoxContainer';
 import TodoForm from './components/Form/TodoForm';
@@ -25,7 +25,7 @@ class App extends Component {
             todo: JSON.parse(localStorage.todo),
             alertShow: false,
             alertMessage: '',
-            email: '',
+            email: sessionStorage.user_email,
             inAddTodo: false,
             addTitle: '',
             url: '',
@@ -46,20 +46,24 @@ class App extends Component {
     _getTodo = () => {
         axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/get_todo", {
             "user_email": sessionStorage.user_email,
-            "sessionKey" : sessionStorage.sessionKey
+            "sessionKey": sessionStorage.sessionKey
         }).then(data => {
-            console.log(data)
-            if(data.data[0] === 2){
+            console.log(data.data[1]);
+            if (data.data[0] === 2) {
                 this._displayAlert("세션 오류. 다시 로그인 하세요.")
+            } else if (data.data[0] === 0) {
+                this._displayAlert(data.data[1])
+            } else {
+                console.log(data.data[1])
+                this.setState({
+                    todo: JSON.parse(data.data[1])
+                });
+                localStorage.todo = data.data[1]
             }
-            else if(data.data[0] == 0){
-                return;
-            }
-            this.setState({
-                todo:JSON.parse(data[1])
-            })
-        })
-    }
+        }).catch(err => {
+            console.log(err)
+        });
+    };
 
     _logIn = (sessionkey) => {
         this.setState({
@@ -73,21 +77,20 @@ class App extends Component {
             sessionStorage.setItem("sessionKey", sessionkey);
         }, 0);
 
-        if(!localStorage.todo){ // 로컬 스토리지에 투두 기록이 있으면 그것을 우선 사용, 없으면 서버에서 가져와 사용
+        if (localStorage.todo === null) { // 로컬 스토리지에 투두 기록이 있으면 그것을 우선 사용, 없으면 서버에서 가져와 사용
             this._getTodo();
-        }
-        else{
-            console.log(sessionStorage)
+        } else {
             axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
                 "user_email": sessionStorage.user_email,
                 "sessionKey": sessionStorage.sessionKey,
                 "todo": localStorage.todo
             }).then(data => {
-                console.log(data)
+                if (data.data[0] === 0) {
+                    this._displayAlert(data.data[1])
+                }
             })
+
         }
-
-
     };
 
     _logOut = () => {
@@ -179,14 +182,16 @@ class App extends Component {
         }
         axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
             "user_email": sessionStorage.user_email,
-            "sessionKey" : sessionStorage.sessionKey,
+            "sessionKey": sessionStorage.sessionKey,
             "todo": JSON.stringify(localStorage.todo)
         }).then(data => {
-            if (data[0] === 2) {
+            if (data.data[0] === 2) {
                 this._logOut();
                 this._displayAlert("세션 오류압나다. 다시 로그린 하세요.")
+            } else if (data.data[0] === 0) {
+                this._displayAlert(data.data[1])
             } else {
-                this._displayAlert(data[1])
+                return;
             }
         })
     };
@@ -224,12 +229,14 @@ class App extends Component {
                 "todo": JSON.stringify(this.state.todo)
 
             }).then(data => {
-                console.log(data)
+                console.log(data);
                 if (data.data[0] === 2) {
                     this._logOut();
-                    this._displayAlert("세션 오류압나다. 다시 로그린 하세요.")
+                    this._displayAlert("세션 오류입나다. 다시 로그린 하세요.")
+                } else if (data.data[0] === 1) {
+                    return;
                 } else {
-                    this._displayAlert(data[1])
+                    this._displayAlert(data.data[1])
                 }
             })
         }
@@ -311,7 +318,7 @@ class App extends Component {
                     todo={this.state.todo}
 
                 />
-
+                {this.state && this.state.todo &&
                 <TodoContainer
                     email={this.state.email}
                     addTodo={addTodo}
@@ -320,7 +327,7 @@ class App extends Component {
                     deleteTodo={deleteTodo}
                     setSelected={updateSelectedTodo}
                     doneTodo={this._doneTodo}
-                />
+                />}
             </div>
         );
     }
