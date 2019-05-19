@@ -42,7 +42,7 @@ class maria:
 
     def find_user(self, content):
         sql = f"""SELECT * FROM user WHERE user_email = '{content['user_email']}';"""
-        return self.s_execute(sql)[0][0]
+        return self.s_execute(sql)
 
     def update_todo(self, content):
         sql = f"""UPDATE todo SET todo = '{content['todo']}' WHERE user_email = '{content['user_email']}';"""
@@ -51,4 +51,3 @@ class maria:
     def create_todo(self, content):
         sql = f"""INSERT INTO todo(user_email, todo) VALUES ('{content['user_email']}', '{content['todo']}');"""
         self.execute(sql)
-        
