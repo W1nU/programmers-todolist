@@ -25,8 +25,7 @@ def login():
 @app.route("/check_session", methods = ["POST","GET"])
 def check_session():
     data = request.json
-    print(db_manager.session_check(data['sessionKey'], data['user_email']))
-    return json.dumps(db_manager.session_check(data['sessionKey'], data['user_email']),ensure_ascii=False)
+    return json.dumps(db_manager.session_check(data),ensure_ascii=False)
 
 @app.route("/update_todo", methods = ["POST","GET"])
 def add_todo():

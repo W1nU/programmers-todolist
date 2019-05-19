@@ -14,10 +14,10 @@ class manager:
                 return {'status': 0, 'contents' : "데이터베이스 서버에 문제가 있습니다. 관리자에게 문의하세요"}
         return inner
 
-    def session_check(self, key, email):
-        s_key = self.redisobj.open_session(email)
-        print(s_key, key)
-        if s_key == key:
+    def session_check(self, content):
+        s_key = self.redisobj.open_session(content['user_email'])
+        print(s_key, content)
+        if s_key == content['sessionKey']:
             return [1, "세션 확인 성공"]
         else:
             return [2, "세션 오류"]
