@@ -3,7 +3,7 @@
 이 프로그램은 프로그래머스 Summer Coding 인턴 프로그램 선발 2차 과제 입니다. 
 
 ```
-링크 : [http://programmers-todo.s3-website.ap-northeast-2.amazonaws.com/](http://programmers-todo.s3-website.ap-northeast-2.amazonaws.com/)
+링크 : <http://programmers-todo.s3-website.ap-northeast-2.amazonaws.com/>
 ```
 
 
@@ -116,7 +116,7 @@ yarn global add serve
 yarn serve -s build
 
 *yarn의 설치는 다음 링크를 참고하세요. 
-  - [https://yarnpkg.com/en/docs/install#mac-stable](https://yarnpkg.com/en/docs/install#mac-stable)
+  - <https://yarnpkg.com/en/docs/install#mac-stable>
 ```
 
 3. Server 
