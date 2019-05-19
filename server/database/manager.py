@@ -43,6 +43,7 @@ class manager:
         else:
             return [0, "이미 가입된 이메일 입니다"]
 
+    @check_db_server
     def login(self, content):
         user = self.maria.find_user(content)
         print(user)
@@ -50,7 +51,7 @@ class manager:
             return [0, "가입되지 않은 이메일 입니다"]
 
         if user[0][2].strip() == content['user_password']:
-            if(self.redisobj.is_exist_session(content['user_email']) == 1):
+            if self.redisobj.is_exist_session(content['user_email']) == 1:
                 s_key = self.redisobj.open_session(content['user_email'])
             else:
                 s_key = self.redisobj.create_session(content['user_email'])
@@ -59,8 +60,12 @@ class manager:
         else:
             return [0, "아이디와 비밀번호를 확인하세요"]
     
+    def logout(self, content):
+        redisobj.drop_session(content['user_email'])
+        return [1, "정상 로그아웃"]
+
     def update_todo(self, content):
-        if(self.session_check(content['sessionKey'], content['user_email'])) == 1:
+        if self.session_check(content['sessionKey'], content['user_email']) == 1:
             if maria.is_exist_todo(content) == True:
                 maria.update_todo(content)
             else:
@@ -71,8 +76,8 @@ class manager:
             return [2, "세션 오류"]
     
     def get_todo(self, content):
-        if(self.session_check(content['sessionKey'], content['user_email'])) == 1:
-            if(maria.is_exist_todo(content)) == True:
+        if self.session_check(content['sessionKey'], content['user_email'])[0] == 1:
+            if maria.is_exist_todo(content) == True:
                 return maria.find_user_todo(content['user_email'])[0][0]
             else:
                 return [0, "해당 사용자의 투두가 존재하지 않음"]

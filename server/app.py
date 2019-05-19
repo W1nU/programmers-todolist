@@ -22,19 +22,24 @@ def login():
     data['user_password'] = hashlib.md5(data['user_password'].encode()).hexdigest()
     return json.dumps(db_manager.login(data) ,ensure_ascii=False)
 
+@app.route("/logout", methos = ["POST, GET"])
+def logout():
+    data = request.json
+    return json.dumps(db_manager.logout(data), ensure_ascii=False)
+
 @app.route("/check_session", methods = ["POST","GET"])
 def check_session():
     data = request.json
     return json.dumps(db_manager.session_check(data),ensure_ascii=False)
 
 @app.route("/update_todo", methods = ["POST","GET"])
-def add_todo():
+def update_todo():
     data = request.json
     return json.dumps(db_manager.update_todo(data))
 
 @app.route("/get_todo", methods = ["POST", "GET"])
 def get_todo():
     data = request.json
-    return
+    return json.dumps(db_manager.get_todo(data), ensure_ascii=false)
 
 app.run('0.0.0.0')

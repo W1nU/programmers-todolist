@@ -47,8 +47,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/components/Form/AuthForm.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="242">
-                    <caret line="52" column="20" lean-forward="true" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
+                  <state relative-caret-position="282">
+                    <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="98" selection-end-column="9" />
                     <folding>
                       <element signature="e#0#39#0" expanded="true" />
                     </folding>
@@ -78,8 +78,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="670">
-              <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
+            <state relative-caret-position="509">
+              <caret line="74" column="9" lean-forward="true" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -174,6 +174,7 @@
       <find>console</find>
       <find>sole</find>
       <find>setUser</find>
+      <find>axios</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -224,7 +225,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="960" />
     <option name="y" value="23" />
     <option name="width" value="960" />
@@ -369,24 +370,24 @@
       <workItem from="1557741527443" duration="3645000" />
       <workItem from="1557751201848" duration="51000" />
       <workItem from="1557751747372" duration="64244000" />
-      <workItem from="1558114859585" duration="30866000" />
+      <workItem from="1558114859585" duration="33772000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98806000" />
+    <option name="totallyTimeSpent" value="101712000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="960" y="23" width="960" height="1103" extended-state="0" />
+    <frame x="0" y="23" width="1920" height="1105" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4984552" visible="true" weight="0.22364217" />
-      <window_info id="Structure" order="1" sideWeight="0.5015448" side_tool="true" visible="true" weight="0.22364217" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4984584" visible="true" weight="0.11058452" />
+      <window_info id="Structure" order="1" sideWeight="0.5015416" side_tool="true" visible="true" weight="0.11058452" />
       <window_info id="npm" order="2" side_tool="true" weight="0.3290735" />
       <window_info id="Favorites" order="3" side_tool="true" weight="0.3290735" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297456" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.03956479" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.039486673" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3264" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -605,16 +606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Form/AuthForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="52" column="20" lean-forward="true" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Todo/TodoBox.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -622,10 +613,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Form/AuthForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="98" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
+        <state relative-caret-position="509">
+          <caret line="74" column="9" lean-forward="true" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
