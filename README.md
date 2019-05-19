@@ -1,4 +1,4 @@
-# programmers-todolist**
+# programmers-todolist
 
 이 프로그램은 프로그래머스 Summer Coding 인턴 프로그램 선발 2차 과제 입니다. 
 
