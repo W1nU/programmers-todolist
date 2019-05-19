@@ -17,7 +17,7 @@ class manager:
 
     def session_check(self, key, email):
         s_key = self.redisobj.open_session(email)
-
+        print(s_key, key)
         if s_key == key:
             return 1
         else:
@@ -64,7 +64,7 @@ class manager:
             if maria.is_exist_todo(content) == True:
                 maria.update_todo(content)
             else:
-                maria,create_todo(content)
+                maria.create_todo(content)
 
             return [1, "정상 수정"]
         

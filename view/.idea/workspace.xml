@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3888ba0e-f629-43a9-be3e-ff2b388cf486" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-    </list>
+    <list default="true" id="3888ba0e-f629-43a9-be3e-ff2b388cf486" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -224,7 +222,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="960" />
     <option name="y" value="23" />
     <option name="width" value="960" />
@@ -369,12 +367,12 @@
       <workItem from="1557741527443" duration="3645000" />
       <workItem from="1557751201848" duration="51000" />
       <workItem from="1557751747372" duration="64244000" />
-      <workItem from="1558114859585" duration="28251000" />
+      <workItem from="1558114859585" duration="28553000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96191000" />
+    <option name="totallyTimeSpent" value="96493000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="960" y="23" width="960" height="1103" extended-state="0" />
