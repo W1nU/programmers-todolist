@@ -62,18 +62,26 @@ class App extends Component {
     _sessionCheck = () => {
         console.log("run")
         axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/check_session", {
-                "sessionKey": sessionStorage.sesstionKey,
+                "sessionKey": sessionStorage.sessionKey,
                 "user_email": sessionStorage.user_email
             }
         ).then(data => {
-            console.log(data);
-            if (data[0] === true) {
-                return 1
+            if (data.data[0] === 1) {
+                this._setLoginState()
             } else {
-                return 0
+                this._displayAlert("세션 오류입니다. 다시 로그인 하세요.")
+                localStorage.clear()
             }
         }).catch(err => console.log(err))
     };
+
+    _setLoginState = () => {
+        this.setState({
+            sessionKey: sessionStorage.getItem("sessionKey"),
+            isLogin: sessionStorage.getItem("isLogin")==='true',
+            email: sessionStorage.getItem("user_email")
+        })
+    }
 
     _closeAlert = () => {
         this.setState({
@@ -133,13 +141,7 @@ class App extends Component {
     };
 
     componentDidMount() {
-        if(this._sessionCheck() === 1){
-            this.setState({
-                sessionKey: sessionStorage.getItem("sessionKey"),
-                isLogin: sessionStorage.getItem("isLogin")==='true',
-                email: sessionStorage.getItem("user_email")
-            })
-        }
+        this._sessionCheck()
     };
 
     render() {
@@ -189,7 +191,7 @@ class App extends Component {
                     <NavigationBar key="nav" isLogin={this.state.isLogin} login={this._logIn} setEmail={this._setUserEmail} logout = {this._logOut}/>
 
                 </div>
-                <Alert show={this.state.alertShow} dismissible onClose={this._closeAlert} variant="success">
+                <Alert show={this.state.alertShow} dismissible onClose={this._closeAlert} variant="danger">
                     {this.state.alertMessage}
                 </Alert>
                 <TodoForm
