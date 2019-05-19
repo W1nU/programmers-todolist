@@ -59,7 +59,7 @@ class manager:
             return [0, "아이디와 비밀번호를 확인하세요"]
 
     
-    def updateTodo(self, content):
+    def update_todo(self, content):
         if(self.session_check(content['sessionKey'], content['user_email'])) == 1:
             if maria.is_exist_todo(content) == True:
                 maria.update_todo(content)

@@ -28,9 +28,9 @@ def check_session():
     print(db_manager.session_check(data['sessionKey'], data['user_email']))
     return json.dumps(db_manager.session_check(data['sessionKey'], data['user_email']),ensure_ascii=False)
 
-@app.route("/add_todo", methods = ["POST","GET"])
+@app.route("/update_todo", methods = ["POST","GET"])
 def add_todo():
     data = request.json
-    return json.dumps(db_manager.create_todo())
+    return json.dumps(db_manager.update_todo(data))
 
 app.run('0.0.0.0')
