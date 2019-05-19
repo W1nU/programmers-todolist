@@ -150,7 +150,9 @@ class App extends Component {
 
         this.setState({
             todo: tempTodo
-        })
+        });
+
+        localStorage.todo = JSON.stringify(tempTodo)
     };
 
     _modifyTodo = (todoTitle, todoContent, todoTime, priority) => {

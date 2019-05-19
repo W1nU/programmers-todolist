@@ -19,3 +19,7 @@
     padding: 2rem;
     background-color: #e1e0e0;
 }
+
+#todo-content {
+    word-wrap: break-word;
+}
