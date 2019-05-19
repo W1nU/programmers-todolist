@@ -65,6 +65,7 @@ class manager:
         return [1, "정상 로그아웃"]
 
     def update_todo(self, content):
+        print(content)
         if self.session_check(content['sessionKey'], content['user_email']) == 1:
             if maria.is_exist_todo(content) == True:
                 maria.update_todo(content)

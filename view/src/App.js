@@ -45,7 +45,7 @@ class App extends Component {
 
     _getTodo = () => {
         axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/get_todo", {
-            "user_emai;": this.state.email,
+            "user_email": this.state.email,
             "sessionKey" : sessionStorage.sessionKey
         }).then(data => {
             if(data[0] === 2){
@@ -211,8 +211,9 @@ class App extends Component {
             }
 
             axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
-                "user_email": localStorage.user_email,
-                "todo": JSON.stringify(this.state.todo)
+                "user_email": sessionStorage.user_email,
+                "todo": JSON.stringify(this.state.todo),
+                "sessionKey": sessionStorage.sessionKey
             }).then(data => {
                 if (data[0] === 2) {
                     this._logOut();
