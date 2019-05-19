@@ -3,8 +3,8 @@ from getpass import getpass
 
 class maria:
     def __init__(self):
-        self.maria_user = input('Insert username : ')
-        self.password = getpass('Insert password : ')
+        self.maria_user = "todo" 
+        self.password = "password"
 
     def execute(self, sql):
         connect = pymysql.connect(host = 'localhost',

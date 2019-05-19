@@ -35,12 +35,11 @@ def check_session():
 @app.route("/update_todo", methods = ["POST","GET"])
 def update_todo():
     data = request.json
-    return json.dumps(db_manager.update_todo(data))
+    return json.dumps(db_manager.update_todo(data), ensure_ascii=False)
 
 @app.route("/get_todo", methods = ["POST", "GET"])
 def get_todo():
     data = request.json
-    print(data)
     return json.dumps(db_manager.get_todo(data), ensure_ascii=False)
 
 app.run('0.0.0.0')

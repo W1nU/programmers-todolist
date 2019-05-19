@@ -11,10 +11,9 @@ class manager:
             try:
                 return func(*args)
             except Exception as e:
-                print(e)
                 return {'status': 0, 'contents' : "데이터베이스 서버에 문제가 있습니다. 관리자에게 문의하세요"}
         return inner
-
+    
     @check_db_server
     def session_check(self, content):
         s_key = self.redisobj.open_session(content['user_email'])
@@ -47,7 +46,6 @@ class manager:
     @check_db_server
     def login(self, content):
         user = self.maria.find_user(content)
-        print(user)
         if self.check_duplicate("user_email", content)[0] == 0:
             return [0, "가입되지 않은 이메일 입니다"]
 
@@ -61,12 +59,13 @@ class manager:
         else:
             return [0, "아이디와 비밀번호를 확인하세요"]
     
+    @check_db_server
     def logout(self, content):
         redisobj.drop_session(content['user_email'])
         return [1, "정상 로그아웃"]
 
+    @check_db_server
     def update_todo(self, content):
-        print(content)
         if self.session_check(content)[0] == 1:
             if self.maria.is_exist_todo(content)[0][0] == True:
                 self.maria.update_todo(content)
@@ -77,6 +76,7 @@ class manager:
         else:
             return [2, "세션 오류"]
     
+    @check_db_server
     def get_todo(self, content):
         if self.session_check(content)[0] == 1:
             if self.maria.is_exist_todo(content)[0][0] == True:
