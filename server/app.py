@@ -22,7 +22,7 @@ def login():
     data['user_password'] = hashlib.md5(data['user_password'].encode()).hexdigest()
     return json.dumps(db_manager.login(data) ,ensure_ascii=False)
 
-@app.route("/logout", methos = ["POST, GET"])
+@app.route("/logout", methods = ["POST, GET"])
 def logout():
     data = request.json
     return json.dumps(db_manager.logout(data), ensure_ascii=False)
