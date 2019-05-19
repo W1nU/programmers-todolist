@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
-import axios from "axios";
 import DatePicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
+import "./TodoForm.css";
 
 class TodoForm extends Component {
     constructor(props) {
@@ -139,7 +139,7 @@ class TodoForm extends Component {
 
                     <Form.Group controlId="formBasicPassword">
                         <Form.Label>내용</Form.Label>
-                        <Form.Control as="textarea" id="todo-content" onClick={this._setValueContent}
+                        <Form.Control as="textarea"  onClick={this._setValueContent}
                                       onChange={this._setTodoContent}
                                       placeholder={this.state.contentPlaceholder}/>
                         <Form.Label>우선순위</Form.Label>

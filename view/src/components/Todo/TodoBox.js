@@ -51,17 +51,20 @@ class TodoBox extends Component {
     };
 
     _refreshTodo = () => {
-
+        console.log(this.state.todo);
         let tempTodoJSX = [];
         let tempTodoContentJSX = [];
         let timeDisplay = null;
         let tempTodoContent = null;
 
         for (let i = 0; i < this.props.todo.length; i++) {
+            timeDisplay = null;
+
             if(this.state.todo[i]['time'] !== null) {
                 let getSelectedDate = new Date(this.state.todo[i]['time']);
                 let color = getSelectedDate - new Date() > 0 ? "light" : "dark";
-                timeDisplay = <Button variant={color} size="sm">{getSelectedDate.getFullYear().toString().substring(2)+"/"+ (getSelectedDate.getMonth() + 1) +"/"+getSelectedDate.getDate()}</Button>
+
+                timeDisplay = <Button disabled variant={color} size="sm">{getSelectedDate.getFullYear().toString().substring(2)+"/"+ (getSelectedDate.getMonth() + 1) +"/"+getSelectedDate.getDate()}</Button>
             }
 
             if(this.state.todo[i]['isDone'] === false){
@@ -86,7 +89,6 @@ class TodoBox extends Component {
 
                 tempTodoContentJSX.push(
                     <Tab.Pane eventKey={"#" + i}>
-                        {/*<TodoContent content={this.props.todo[i]['content']}/>*/}
                         <TodoContent content={tempTodoContent}/>
                     </Tab.Pane>
                 )

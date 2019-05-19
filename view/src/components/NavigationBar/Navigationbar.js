@@ -34,8 +34,8 @@ class Navigationbar extends Component {
 
     _setButtons = () => {
         let Buttons = [];
-        if (this.props.isLogin === true) {
-            Buttons.push(<Button id="loginButton" size="sm">로그아웃</Button>);
+        if (this.props.isLogin===true) {
+            Buttons.push(<Button id="loginButton" size="sm" onClick={this.props.logout}>로그아웃</Button>);
         } else {
             Buttons.push(<Button key="loginButton" id="loginButton" size="sm" onClick={this._setInLogin}>
                 로그인</Button>);
@@ -54,23 +54,16 @@ class Navigationbar extends Component {
         return (
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="#home">
-                    <img
-                        alt=""
-                        src="/logo.svg"
-                        width="30"
-                        height="30"
-                        className="d-inline-block align-top"
-                    />
                     {' Todo-List'}
                 </Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#home">이전 기록</Nav.Link>
                 </Nav>
                 {this._setButtons()}
                 <AuthForm
                     show = {this.state.inAuth}
                     onHide = {authClose}
+                    setEmail = {this.props.setEmail}
                     authTitle = {this.state.authTitle}
                     authButtonType = {this.state.authType}
                     url = {this.state.url}

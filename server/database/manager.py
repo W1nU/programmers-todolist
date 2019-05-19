@@ -26,25 +26,10 @@ class manager:
     @check_db_server
     def check_duplicate(self, q_type, content):
         if q_type == "user_email":
-            if self.maria.check_email_duplicate(content)[0][0] == True:
+            if self.maria.check_email_duplicate(content) == True:
                 return [1, "이미 가입된 이메일 입니다"]
             else:
                 return [0, ""]
-
-    @check_db_server
-    def create_todo(self, q_type, content):
-        if self.session_check(content['key'], content['user_email']) == 0:
-            return {'status': 2, 'contents' : "세션오류"}
-        if q_type == "with_time":
-            self.maria.create_todo_with_time(content)
-                
-        elif q_type == "without_time":
-            self.maria.create_todo_without_time(content)
-            
-        else:
-            return [0, "정상적인 요청이 아닙니다"]
-                
-        return [1, "정상적으로 등록되었습니다"]
 
     @check_db_server
     def signin(self, content):
@@ -69,8 +54,26 @@ class manager:
             else:
                 s_key = self.redisobj.create_session(content['user_email'])
             return [1, "정상 로그인", s_key]
-            
+
         else:
             return [0, "아이디와 비밀번호를 확인하세요"]
 
     
+    def updateTodo(self, content):
+        if(self.session_check(content['sessionKey'], content['user_email'])) == 1:
+            if maria.is_exist_todo(content) == True:
+                maria.update_todo(content)
+            else:
+                maria,create_todo(content)
+
+            return [1, "정상 수정"]
+        
+        else:
+            return [2, "세션 오류"]
+    
+    
+
+        
+
+
+        

@@ -30,17 +30,25 @@ class maria:
     
     def check_email_duplicate(self, content):
         sql = f"""SELECT EXISTS(SELECT user_email FROM user WHERE user_email = '{content['user_email']}');"""
-        return self.s_execute(sql)
+        return self.s_execute(sql)[0][0]
 
     def create_user(self, content):
         sql = f"""INSERT INTO user(user_email, user_password) VALUES ('{content['user_email']}',' {content['user_password']}');"""
-        
-        print(self.execute(sql))
+        self.execute(sql)
 
-    def create_todo_with_time(self, content):
-        sql = f"""INSERT INTO todo(todo_user, todo_title, toto_content) VALUES ({content['todo_user']}, {content['todo_title']}, {content['todo_content']});"""
-        self.excute(sql)
-        
-    def find_user(self, content):
-        sql = f"""SELECT * FROM user WHERE user_email = '{content['user_email']}'"""
+    def is_exist_todo(self, content):
+        sql = f"""SELECT EXISTS(SELCECT * FROM todo WHERE user_email = '{content['user_email']}'');"""
         return self.s_execute(sql)
+
+    def find_user(self, content):
+        sql = f"""SELECT * FROM user WHERE user_email = '{content['user_email']}';"""
+        return self.s_execute(sql)[0][0]
+
+    def update_todo(self, content):
+        sql = f"""UPDATE todo SET todo = '{content['todo']}' WHERE user_email = '{content['user_email']}';"""
+        self.execute(sql)
+
+    def create_todo(self, content):
+        sql = f"""INSERT INTO todo(user_email, todo) VALUES ('{content['user_email']}', '{content['todo']}');"""
+        self.execute(sql)
+        

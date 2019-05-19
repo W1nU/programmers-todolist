@@ -17,7 +17,7 @@ class AuthForm extends Component {
         }
     }
 
-    _setUserEmailInfo = (e) => {
+    _setUserEmail = (e) => {
         console.log(this.props);
         this.setState({
             email: e.target.value
@@ -86,12 +86,13 @@ class AuthForm extends Component {
             this.props.onHide();
             localStorage.sessionKey = data.data[2];
             localStorage.user_email = this.state.email;
-            this.props.setEmail(this.state.email);
             this.props.login(data.data[2]);
         }
     };
 
     _sendForm = () => {
+        this.props.setEmail(this.state.email);
+
         if(navigator.onLine === false){
             this._alertControl("네트워크 연결을 확인하세요");
             return;
@@ -138,7 +139,7 @@ class AuthForm extends Component {
                         <Form>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>이메일</Form.Label>
-                                <Form.Control id = "user_email" onChange={this._setUserEmailInfo} type="email" placeholder="Enter email" />
+                                <Form.Control id = "user_email" onChange={this._setUserEmail} type="email" placeholder="Enter email" />
                             </Form.Group>
 
                             <Form.Group controlId="formBasicPassword">

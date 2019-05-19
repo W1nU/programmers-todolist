@@ -24,25 +24,39 @@ class App extends Component {
             isModifyTodo: false,
             selectedTodo: null,
             selectedTodoId: null,
-            prioritySelectOptionJSX: []
+            prioritySelectOptionJSX: [],
         }
     }
 
     _setUserEmail = (email) => {
+        console.log(email);
         this.setState({
-            email:email
+            email: email
         })
     };
 
-    _login = (sessionkey) => {
+    _logIn = (sessionkey) => {
         this.setState({
             sessionKey: sessionkey,
             isLogin: true
         });
 
-        sessionStorage.setItem("sessionKey",sessionkey);
-        sessionStorage.setItem("user_email", this.state.email);
-        sessionStorage.setItem("isLogin", true);
+        console.log(this.state.email);
+        setTimeout(() => {
+            sessionStorage.setItem("user_email", this.state.email);
+            sessionStorage.setItem("isLogin", true);
+            sessionStorage.setItem("sessionKey",sessionkey);
+        }, 0)
+
+    };
+
+    _logOut = () => {
+        this.setState({
+            sessionKey: null,
+            isLogin: false
+        });
+
+        sessionStorage.clear()
     };
 
     _sessionCheck = () => {
@@ -125,9 +139,12 @@ class App extends Component {
     componentDidMount() {
         this.setState({
             sessionKey: sessionStorage.getItem("sessionKey"),
-            isLogin: sessionStorage.getItem("isLogin"),
+            isLogin: sessionStorage.getItem("isLogin")==='true',
             email: sessionStorage.getItem("user_email")
         })
+        setTimeout(()=>{
+            console.log(this.state.isLogin)
+        },0)
     };
 
     render() {
@@ -174,7 +191,8 @@ class App extends Component {
         return (
             <div className="App">
                 <div id='navbar'>
-                    <NavigationBar isLogin={this.state.isLogin} login={this._login} setEmail={this._setUserEmail}/>
+                    <NavigationBar key="nav" isLogin={this.state.isLogin} login={this._logIn} setEmail={this._setUserEmail} logout = {this._logOut}/>
+
                 </div>
                 <Alert show={this.state.alertShow} dismissible onClose={this._closeAlert} variant="success">
                     {this.state.alertMessage}
@@ -190,6 +208,7 @@ class App extends Component {
                     toModify = {this._modifyTodo}
                     updateAddTodo = {this._updateAddTodo}
                     todo = {this.state.todo}
+
                 />
 
                 <TodoContainer
