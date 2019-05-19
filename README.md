@@ -57,9 +57,11 @@
 9. 로그인, 회원가입
   - 네비게이션바의 로그인, 회원가입, 로그아웃 버튼을 이용해 사용이 가능하며, 로그인 여부에 따라 변경됩니다. 
   - 사용자가 회원가입 요청을 클라이언트에서 보내면, 내부적으로 1차적으로 hashing하여 전송합니다. 
-    그 후 서버에서 다시 hashing한 값을 DB(maria)에 저장하고, 임의의 문자열을 hashing한 값에 요청 시간의 timestamp를 문자열 덧셈하여 
-    sessionKey로 클라이언트에 전송합니다. 또한 sessionKey는 redis에 key = user_email, value = sessionKey로 저장됩니다.
-  - 이 때 생성되는 session은 60분 동안 유지되며, 만일 타임아웃이 되기 전에 다른 요청이 들어온다면, 들어온 시간으로 부터 60분으로 세션을 연장하게 됩니다. 
+    그 후 서버에서 다시 hashing한 값을 DB(maria)에 저장하고, 임의의 문자열을 hashing한 값에 
+    요청 시간의 timestamp를 문자열 덧셈하여 sessionKey로 클라이언트에 전송합니다. 
+    또한 sessionKey는 redis에 key = user_email, value = sessionKey로 저장됩니다.
+  - 이 때 생성되는 session은 60분 동안 유지되며, 만일 타임아웃이 되기 전에 다른 요청이 들어온다면, 
+    들어온 시간으로 부터 60분으로 세션을 연장하게 됩니다. 
 10. DB에 TODO 저장
   - 로그인을 하면 우선 localStorage에 TODO가 있는지 검사합니다. 
     만약 없다면 서버에서 get_todo를 호출하여 디비에 있는 해당 사용자의 TODO를 가져오고, 
