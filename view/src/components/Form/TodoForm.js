@@ -90,7 +90,7 @@ class TodoForm extends Component {
                 isModify: nextProps.isModifyTodo,
                 todoTitle: nextProps.selectedTodo['title'],
                 todoContent: nextProps.selectedTodo['content'],
-                time: nextProps.selectedTodo['time'],
+                time: new Date(nextProps.selectedTodo['time']),
                 contentPlaceholder: nextProps.selectedTodo['content'],
                 titlePlaceholder: nextProps.selectedTodo['title']
             })
@@ -145,7 +145,7 @@ class TodoForm extends Component {
                     <br/>
                     <DatePicker
                         minDate={new Date()}
-                        selected={new Date(this.state.time)}
+                        selected={this.state.time}
                         onChange={handleTimeChange}
                         isClearable={true}
                         placeholderText="필요시 날자를 선택하세요"
