@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import {Form, Button, Modal} from 'react-bootstrap';
+import {Form, Button, Modal, Alert} from 'react-bootstrap';
 import axios from 'axios';
 import sha256 from 'crypto-js/sha256';
 import Base64 from 'crypto-js/enc-base64';
-
-import Alerts from '../Alerts';
 
 class AuthForm extends Component {
     constructor(props) {
@@ -13,7 +11,8 @@ class AuthForm extends Component {
             showAlert: false,
             email : '',
             password : '',
-            error: ""
+            error: "",
+            refreshState: this.props.refreshState
         }
     }
 
@@ -31,10 +30,11 @@ class AuthForm extends Component {
     };
 
     _alertControl = (errormsg) => {
-        this.setState({
+        console.log(errormsg);
+        setTimeout( () => this.setState({
             error: errormsg,
             showAlert: true,
-        })
+        }), 10);
     };
 
     _closeAlert = () => {
@@ -44,12 +44,11 @@ class AuthForm extends Component {
     };
 
     _checkEmail = () => {
-        let exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+        console.log(this.state)
+        let exptext = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
         if(exptext.test(this.state.email) === false){
-            this.setState({
-                error: "이메일 양식으로 입력해 주세요",
-                showAlert: true
-            });
+            this._alertControl("이메일 양식으로 입력해 주세요");
             return 0
         }
         return 1
@@ -65,13 +64,13 @@ class AuthForm extends Component {
             return 0
         }
 
-        if(this.state.password.search(/\s/) != -1){
+        if(this.state.password.search(/\s/) !== -1){
             this._alertControl("비밀번호는 공백없이 입력해주세요");
             return 0
         }
 
         if(num < 0 || eng < 0 || spe < 0){
-            this._alertControl("비밀번호는 영문, 숫자, 특수문자를 혼합하여 사용하여야 합니다")
+            this._alertControl("비밀번호는 영문, 숫자, 특수문자를 혼합하여 사용하여야 합니다");
             return 0
         }
 
@@ -99,6 +98,7 @@ class AuthForm extends Component {
         }
 
         if(this._checkEmail() === 0 || this._checkPassword() === 0) { return 0 }
+
         else {
             axios.post(this.props.url, {
                     "user_email": this.state.email,
@@ -108,15 +108,21 @@ class AuthForm extends Component {
                 this._alertControl("서버에 문제가 있습니다. 관리자에게 문의하세요");
             });
         }
-    }
+    };
 
     componentWillReceiveProps(nextProps, nextContext) {
         this.setState({
             showAlert: false,
-            email : '',
-            password : '',
             error: ""
         })
+
+        if(nextProps.refreshState === true){
+            setTimeout(() => {this.setState({
+                email: '',
+                password: ''
+            }) }, 0);
+            this.props.refreshStateDone()
+        }
     }
 
     render() {
@@ -135,7 +141,9 @@ class AuthForm extends Component {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Alerts show={this.state.showAlert} close={this._closeAlert} error={this.state.error} variant="danger" />
+                        <Alert show={this.state.showAlert} dismissible onClose={this._closeAlert} variant="danger">
+                            {this.state.error}
+                        </Alert>
                         <Form>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>이메일</Form.Label>

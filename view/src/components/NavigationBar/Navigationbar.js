@@ -9,7 +9,8 @@ class Navigationbar extends Component {
             inAuth: false,
             authTitle: '',
             authType: '',
-            url: ''
+            url: '',
+            refreshState: false
         };
         this._setButtons();
     }
@@ -19,7 +20,8 @@ class Navigationbar extends Component {
             inAuth: true,
             authTitle: '회원가입',
             authType: '가입',
-            url: "http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/signin"
+            url: "http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/signin",
+            refreshState: true
         })
     }
 
@@ -28,9 +30,16 @@ class Navigationbar extends Component {
             inAuth:true,
             authTitle: '로그인',
             authType: '로그인',
-            url: "http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/login"
+            url: "http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/login",
+            refreshState: true
         })
     }
+
+    _setRefreshStateFalse = () => {
+        this.setState({
+            refreshState: false
+        })
+    };
 
     _setButtons = () => {
         let Buttons = [];
@@ -68,7 +77,8 @@ class Navigationbar extends Component {
                     authButtonType = {this.state.authType}
                     url = {this.state.url}
                     login = {this.props.login}
-                    setEmail = {this.props.setEmail}
+                    refreshState = {this.state.refreshState}
+                    refreshStateDone = {this._setRefreshStateFalse}
             />
 
             </Navbar>
