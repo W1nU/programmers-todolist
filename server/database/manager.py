@@ -68,12 +68,9 @@ class manager:
     def update_todo(self, content):
         print(content)
         if self.session_check(content)[0] == 1:
-            print("run")
             if self.maria.is_exist_todo(content)[0][0] == True:
-                print("1")
                 self.maria.update_todo(content)
             else:
-                print("2")
                 self.maria.create_todo(content)
             return [1, "정상 수정"]
         
@@ -83,7 +80,7 @@ class manager:
     def get_todo(self, content):
         if self.session_check(content)[0] == 1:
             if self.maria.is_exist_todo(content)[0][0] == True:
-                return self.maria.find_user_todo(content['user_email'])[0][0]
+                return [1, self.maria.find_user_todo(content)[0][0]]
 
             else:
                 return [0, "해당 사용자의 투두가 존재하지 않음"]
