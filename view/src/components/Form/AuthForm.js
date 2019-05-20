@@ -80,6 +80,9 @@ class AuthForm extends Component {
         }
         else{
             this.props.onHide();
+            if(data.data['contents'] === "정상 가입"){
+                return;
+            }
             localStorage.sessionKey = data.data[2];
             localStorage.user_email = this.state.email;
             this.props.login(data.data[2]);
@@ -111,7 +114,7 @@ class AuthForm extends Component {
         this.setState({
             showAlert: false,
             error: ""
-        })
+        });
 
         if(nextProps.refreshState === true){
             setTimeout(() => {this.setState({

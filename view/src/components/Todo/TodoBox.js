@@ -51,7 +51,6 @@ class TodoBox extends Component {
     };
 
     _refreshTodo = () => {
-        console.log(this.state.todo);
         let tempTodoJSX = [];
         let tempTodoContentJSX = [];
         let timeDisplay = null;
@@ -124,7 +123,7 @@ class TodoBox extends Component {
     };
 
     componentWillReceiveProps(nextProps, nextContext) {
-        this._refreshTodo()
+        setTimeout(() => {this._refreshTodo()}, 500)
     }
 
     componentDidMount() {

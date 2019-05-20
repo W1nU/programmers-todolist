@@ -72,24 +72,21 @@ class App extends Component {
         sessionStorage.setItem("isLogin", true);
         sessionStorage.setItem("sessionKey", sessionkey);
 
+        this._getTodo();
 
-        if (localStorage.todo === []) { // 로컬 스토리지에 투두 기록이 있으면 그것을 우선 사용, 없으면 서버에서 가져와 사용
-            this._getTodo();
-        }
-
-        else {
-            axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
-                "user_email": sessionStorage.user_email,
-                "sessionKey": sessionStorage.sessionKey,
-                "todo": localStorage.todo
-
-            }).then(data => {
-                if (data.data[0] === 0) {
-                    this._displayAlert(data.data[1])
-                }
-            })
-
-        }
+        // else {
+        //     axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
+        //         "user_email": sessionStorage.user_email,
+        //         "sessionKey": sessionStorage.sessionKey,
+        //         "todo": localStorage.todo
+        //
+        //     }).then(data => {
+        //         if (data.data[0] === 0) {
+        //             this._displayAlert(data.data[1])
+        //         }
+        //     })
+        //
+        // }
     };
 
     _logOut = () => {
@@ -106,7 +103,7 @@ class App extends Component {
     };
 
     _sessionCheck = () => {
-        axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
+        axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/check_session", {
             "user_email": sessionStorage.user_email,
             "sessionKey": sessionStorage.sessionKey,
         }).then(data => {
@@ -115,6 +112,7 @@ class App extends Component {
                 this._getTodo();
 
             } else if (data.data[0] === 2) {
+                this._logOut()
                 sessionStorage.clear();
                 this._displayAlert("세션 오류입니다. 다시 로그인 하세요.");
             }
