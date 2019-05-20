@@ -11,7 +11,8 @@ class manager:
             try:
                 return func(*args)
             except Exception as e:
-                return {'status': 0, 'contents' : "데이터베이스 서버에 문제가 있습니다. 관리자에게 문의하세요"}
+                print(e)
+                return [0, "데이터베이스 서버에 문제가 있습니다. 관리자에게 문의하세요"]
         return inner
     
     @check_db_server
@@ -83,7 +84,7 @@ class manager:
                 return [1, self.maria.find_user_todo(content)[0][0]]
 
             else:
-                return [0, "해당 사용자의 투두가 존재하지 않음"]
+                return [0, "서버에 사용자의 TODO 정보가 없습니다"]
         
         else:
             return [2, "세션 오류"]
