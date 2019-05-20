@@ -32,6 +32,39 @@
   -  직관적이고 의미 전달이 명확한 화면을 사용자에게 제공한다.
 ```
 
+### 실행방법
+
+1. 공통 - Ubuntu 18.04
+
+```
+git clone https://github.com/W1nU/programmers-todolist.git
+```
+
+2. Client 
+
+```
+cd view 
+yarn build
+yarn global add serve
+yarn serve -s build
+```
+*yarn의 설치는 다음 링크를 참고하세요. 
+  - <https://yarnpkg.com/en/docs/install#mac-stable>
+
+3. Server 
+
+```
+cd server
+pip3 install -r requirements.txt
+python3 app.py
+```
+
+4. DB
+
+```
+실행을 위해서 mariaDB와 redis가 필요합니다.
+```
+
 ### 구현내용
 
 
@@ -92,39 +125,4 @@
 - 기타
   1. AWS EC2, S3
 ```
-
-### 실행방법
-
-1. 공통 - Ubuntu 18.04
-
-```
-git clone https://github.com/W1nU/programmers-todolist.git
-```
-
-2. Client 
-
-```
-cd view 
-yarn build
-yarn global add serve
-yarn serve -s build
-```
-*yarn의 설치는 다음 링크를 참고하세요. 
-  - <https://yarnpkg.com/en/docs/install#mac-stable>
-
-3. Server 
-
-```
-cd server
-pip3 install -r requirements.txt
-python3 app.py
-```
-
-4. DB
-
-```
-실행을 위해서 mariaDB와 redis가 필요합니다.
-```
-
-
 
