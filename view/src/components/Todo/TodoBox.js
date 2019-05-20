@@ -51,7 +51,6 @@ class TodoBox extends Component {
     };
 
     _refreshTodo = () => {
-        console.log(this.state.todo);
         let tempTodoJSX = [];
         let tempTodoContentJSX = [];
         let timeDisplay = null;
@@ -92,9 +91,11 @@ class TodoBox extends Component {
                         <TodoContent content={tempTodoContent}/>
                     </Tab.Pane>
                 )
+
             }
 
-            else if(this.state.todo[i]['isDone'] === true){
+
+            else if(this.props.todo[i]['isDone'] === true){
                 tempTodoJSX.push(
                     <ListGroup.Item action href={"#" + i} className="done-todo">
                         {i+1 + ". " + this.props.todo[i]['title']}
@@ -107,7 +108,7 @@ class TodoBox extends Component {
                             <Button size="sm" onClick={this._done} className="todo-buttons" variant="success" id = {"button-done#" + i} disabled>완료</Button>
                         </div>
                     </ListGroup.Item>
-                )
+                );
                 tempTodoContentJSX.push(
                     <Tab.Pane eventKey={"#" + i}>
                         <TodoContent content={this.props.todo[i]['content']}/>
@@ -122,7 +123,7 @@ class TodoBox extends Component {
     };
 
     componentWillReceiveProps(nextProps, nextContext) {
-        this._refreshTodo()
+        setTimeout(() => {this._refreshTodo()}, 500)
     }
 
     componentDidMount() {

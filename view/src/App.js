@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Alert, Spinner} from 'react-bootstrap';
+import {Alert} from 'react-bootstrap';
 import NavigationBar from './components/NavigationBar/Navigationbar';
 import TodoContainer from './containers/TodoBoxContainer';
 import TodoForm from './components/Form/TodoForm';
 import axios from "axios";
+
 
 class App extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class App extends Component {
             subject: {title: 'WEB', sub: "World wide web"},
             inSignIn: false,
             sessionKey: '',
-            isLogin: false,
+            isLogin: sessionStorage.isLogin === "true",
             todo: JSON.parse(localStorage.todo),
             alertShow: false,
             alertMessage: '',
@@ -33,11 +34,11 @@ class App extends Component {
             selectedTodo: null,
             selectedTodoId: null,
             prioritySelectOptionJSX: [],
+            variant: null
         }
     }
 
     _setUserEmail = (email) => {
-        console.log(email);
         this.setState({
             email: email
         })
@@ -48,21 +49,22 @@ class App extends Component {
             "user_email": sessionStorage.user_email,
             "sessionKey": sessionStorage.sessionKey
         }).then(data => {
-            console.log(data.data[1]);
+            console.log(data)
             if (data.data[0] === 2) {
                 this._displayAlert("세션 오류. 다시 로그인 하세요.")
             } else if (data.data[0] === 0) {
                 this._displayAlert(data.data[1])
             } else {
-                console.log(data.data[1])
                 this.setState({
                     todo: JSON.parse(data.data[1])
                 });
+                this._displaySucsessAlert("서버에서 사용자의 TODO를 가져왔습니다")
                 localStorage.todo = data.data[1]
             }
         }).catch(err => {
             console.log(err)
         });
+
     };
 
     _logIn = (sessionkey) => {
@@ -71,26 +73,12 @@ class App extends Component {
             isLogin: true
         });
 
-        setTimeout(() => {
-            sessionStorage.setItem("user_email", this.state.email);
-            sessionStorage.setItem("isLogin", true);
-            sessionStorage.setItem("sessionKey", sessionkey);
-        }, 0);
+        sessionStorage.setItem("user_email", this.state.email);
+        sessionStorage.setItem("isLogin", true);
+        sessionStorage.setItem("sessionKey", sessionkey);
 
-        if (localStorage.todo === null) { // 로컬 스토리지에 투두 기록이 있으면 그것을 우선 사용, 없으면 서버에서 가져와 사용
-            this._getTodo();
-        } else {
-            axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
-                "user_email": sessionStorage.user_email,
-                "sessionKey": sessionStorage.sessionKey,
-                "todo": localStorage.todo
-            }).then(data => {
-                if (data.data[0] === 0) {
-                    this._displayAlert(data.data[1])
-                }
-            })
-
-        }
+        this._displaySucsessAlert("정상적으로 로그인 되었습니다");
+        this._getTodo();
     };
 
     _logOut = () => {
@@ -103,20 +91,22 @@ class App extends Component {
             isLogin: false
         });
 
+        this._displaySucsessAlert("정상적으로 로그아웃 되었습니다");
+
         sessionStorage.clear()
     };
 
     _sessionCheck = () => {
         axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/check_session", {
-                "sessionKey": sessionStorage.sessionKey,
-                "user_email": sessionStorage.user_email
-            }
-        ).then(data => {
+            "user_email": sessionStorage.user_email,
+            "sessionKey": sessionStorage.sessionKey,
+        }).then(data => {
             if (data.data[0] === 1) {
                 this._setLoginState();
                 this._getTodo();
 
             } else if (data.data[0] === 2) {
+                this._logOut()
                 sessionStorage.clear();
                 this._displayAlert("세션 오류입니다. 다시 로그인 하세요.");
             }
@@ -137,10 +127,19 @@ class App extends Component {
         })
     };
 
-    _displayAlert = (M) => {
+    _displaySucsessAlert = (msg) => {
         this.setState({
             alertShow: true,
-            alertMessage: M
+            alertMessage: msg,
+            variant: "success"
+        })
+    }
+
+    _displayAlert = (msg) => {
+        this.setState({
+            alertShow: true,
+            alertMessage: msg,
+            variant: "danger"
         })
     };
 
@@ -164,7 +163,6 @@ class App extends Component {
         modifiedTodo[this.state.selectedTodoId].title = todoTitle;
 
         if (priority - 1 !== this.state.selectedTodoId) {
-            console.log(this.state.selectedTodo, priority);
             modifiedTodo.splice(this.state.selectedTodoId, 1);
             modifiedTodo.splice(priority - 1, 0, selectedTodo)
         }
@@ -185,7 +183,7 @@ class App extends Component {
         axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
             "user_email": sessionStorage.user_email,
             "sessionKey": sessionStorage.sessionKey,
-            "todo": JSON.stringify(localStorage.todo)
+            "todo": localStorage.todo
         }).then(data => {
             if (data.data[0] === 2) {
                 this._logOut();
@@ -215,10 +213,6 @@ class App extends Component {
 
         localStorage.todo = JSON.stringify(this.state.todo);
 
-        if (navigator.onLine === false) {
-            this._displayAlert("인터넷 연결을 확인하세요.")
-            return;
-        }
         if (this.state.isLogin === true) {
             if (navigator.onLine === false) {
                 this._displayAlert("인터넷 연결을 확인하세요.");
@@ -231,7 +225,6 @@ class App extends Component {
                 "todo": JSON.stringify(this.state.todo)
 
             }).then(data => {
-                console.log(data);
                 if (data.data[0] === 2) {
                     this._logOut();
                     this._displayAlert("세션 오류입나다. 다시 로그린 하세요.")
@@ -246,10 +239,10 @@ class App extends Component {
     ;
 
     componentDidMount() {
-        this._sessionCheck()
-    }
-    ;
-
+        if(this.state.isLogin === true){
+            this._sessionCheck()
+        }
+    };
 
     render() {
         const close = () => {
@@ -277,7 +270,6 @@ class App extends Component {
                 addTitle: "할 일 수정하기",
                 selectedTodo: this.state.todo[id],
                 isModifyTodo: true,
-                toModify: this._modifyTodo,
                 prioritySelectOptionJSX: tempSelectFormJSX
             });
         };
@@ -300,11 +292,14 @@ class App extends Component {
         return (
             <div className="App">
                 <div id='navbar'>
-                    <NavigationBar key="nav" isLogin={this.state.isLogin} login={this._logIn}
-                                   setEmail={this._setUserEmail} logout={this._logOut}/>
+                    <NavigationBar key="nav" isLogin={this.state.isLogin}
+                                   login={this._logIn}
+                                   setEmail={this._setUserEmail}
+                                   logout={this._logOut}
+                                   signInAlert = {this._displaySucsessAlert}/>
 
                 </div>
-                <Alert show={this.state.alertShow} dismissible onClose={this._closeAlert} variant="danger">
+                <Alert show={this.state.alertShow} dismissible onClose={this._closeAlert} variant={this.state.variant}>
                     {this.state.alertMessage}
                 </Alert>
                 <TodoForm
@@ -320,7 +315,6 @@ class App extends Component {
                     todo={this.state.todo}
 
                 />
-                {this.state && this.state.todo &&
                 <TodoContainer
                     email={this.state.email}
                     addTodo={addTodo}
@@ -329,7 +323,7 @@ class App extends Component {
                     deleteTodo={deleteTodo}
                     setSelected={updateSelectedTodo}
                     doneTodo={this._doneTodo}
-                />}
+                />
             </div>
         );
     }

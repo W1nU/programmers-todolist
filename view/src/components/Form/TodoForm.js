@@ -64,12 +64,6 @@ class TodoForm extends Component {
         }
     };
 
-    _setValueTime = (e) => {
-        if (this.props.isModifyTodo === true && this.state.time !== null) {
-            e.target.value = this.state.time
-        }
-    };
-
     _setPriority = (e) => {
         this.setState({
             priority: e.target.value
@@ -90,14 +84,13 @@ class TodoForm extends Component {
 }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        //this._makePriorityOption();
         if (nextProps.isModifyTodo === true) {
             this.setState({
                 priority: 1,
                 isModify: nextProps.isModifyTodo,
                 todoTitle: nextProps.selectedTodo['title'],
                 todoContent: nextProps.selectedTodo['content'],
-                time: nextProps.selectedTodo['time'],
+                time: new Date(nextProps.selectedTodo['time']),
                 contentPlaceholder: nextProps.selectedTodo['content'],
                 titlePlaceholder: nextProps.selectedTodo['title']
             })
@@ -116,7 +109,7 @@ class TodoForm extends Component {
 
     render() {
         const handleTimeChange = (e) => {
-            this.setState({...this.state, time: e});
+            this.setState({time: e});
         };
 
         return (
@@ -156,7 +149,6 @@ class TodoForm extends Component {
                         onChange={handleTimeChange}
                         isClearable={true}
                         placeholderText="필요시 날자를 선택하세요"
-                        onClick={this._setValueTime}
                     />
 
                     <br/>
