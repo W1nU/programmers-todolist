@@ -1,4 +1,4 @@
-# programmers-todolist
+# Programmers-todolist
 
 이 프로그램은 프로그래머스 Summer Coding 인턴 프로그램 선발 2차 과제 입니다. 
 
@@ -48,8 +48,7 @@ yarn build
 yarn global add serve
 yarn serve -s build
 ```
-*yarn의 설치는 다음 링크를 참고하세요. 
-  - <https://yarnpkg.com/en/docs/install#mac-stable>
+  - yarn의 설치는 [다음 링크](https://yarnpkg.com/en/docs/install#mac-stable)(yarn 공식 홈페이지)를 참고하세요. 
 
 3. Server 
 
