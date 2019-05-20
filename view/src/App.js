@@ -6,6 +6,7 @@ import TodoContainer from './containers/TodoBoxContainer';
 import TodoForm from './components/Form/TodoForm';
 import axios from "axios";
 
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -33,6 +34,7 @@ class App extends Component {
             selectedTodo: null,
             selectedTodoId: null,
             prioritySelectOptionJSX: [],
+            variant: null
         }
     }
 
@@ -47,6 +49,7 @@ class App extends Component {
             "user_email": sessionStorage.user_email,
             "sessionKey": sessionStorage.sessionKey
         }).then(data => {
+            console.log(data)
             if (data.data[0] === 2) {
                 this._displayAlert("세션 오류. 다시 로그인 하세요.")
             } else if (data.data[0] === 0) {
@@ -55,11 +58,13 @@ class App extends Component {
                 this.setState({
                     todo: JSON.parse(data.data[1])
                 });
+                this._displaySucsessAlert("서버에서 사용자의 TODO를 가져왔습니다")
                 localStorage.todo = data.data[1]
             }
         }).catch(err => {
             console.log(err)
         });
+
     };
 
     _logIn = (sessionkey) => {
@@ -72,21 +77,8 @@ class App extends Component {
         sessionStorage.setItem("isLogin", true);
         sessionStorage.setItem("sessionKey", sessionkey);
 
+        this._displaySucsessAlert("정상적으로 로그인 되었습니다");
         this._getTodo();
-
-        // else {
-        //     axios.post("http://ec2-13-125-206-157.ap-northeast-2.compute.amazonaws.com:5000/update_todo", {
-        //         "user_email": sessionStorage.user_email,
-        //         "sessionKey": sessionStorage.sessionKey,
-        //         "todo": localStorage.todo
-        //
-        //     }).then(data => {
-        //         if (data.data[0] === 0) {
-        //             this._displayAlert(data.data[1])
-        //         }
-        //     })
-        //
-        // }
     };
 
     _logOut = () => {
@@ -98,6 +90,8 @@ class App extends Component {
             sessionKey: null,
             isLogin: false
         });
+
+        this._displaySucsessAlert("정상적으로 로그아웃 되었습니다");
 
         sessionStorage.clear()
     };
@@ -133,10 +127,19 @@ class App extends Component {
         })
     };
 
-    _displayAlert = (M) => {
+    _displaySucsessAlert = (msg) => {
         this.setState({
             alertShow: true,
-            alertMessage: M
+            alertMessage: msg,
+            variant: "success"
+        })
+    }
+
+    _displayAlert = (msg) => {
+        this.setState({
+            alertShow: true,
+            alertMessage: msg,
+            variant: "danger"
         })
     };
 
@@ -242,8 +245,6 @@ class App extends Component {
     };
 
     render() {
-
-
         const close = () => {
             this.setState({inAddTodo: false})
         };
@@ -291,11 +292,14 @@ class App extends Component {
         return (
             <div className="App">
                 <div id='navbar'>
-                    <NavigationBar key="nav" isLogin={this.state.isLogin} login={this._logIn}
-                                   setEmail={this._setUserEmail} logout={this._logOut}/>
+                    <NavigationBar key="nav" isLogin={this.state.isLogin}
+                                   login={this._logIn}
+                                   setEmail={this._setUserEmail}
+                                   logout={this._logOut}
+                                   signInAlert = {this._displaySucsessAlert}/>
 
                 </div>
-                <Alert show={this.state.alertShow} dismissible onClose={this._closeAlert} variant="danger">
+                <Alert show={this.state.alertShow} dismissible onClose={this._closeAlert} variant={this.state.variant}>
                     {this.state.alertMessage}
                 </Alert>
                 <TodoForm
@@ -311,7 +315,6 @@ class App extends Component {
                     todo={this.state.todo}
 
                 />
-                {this.state && this.state.todo &&
                 <TodoContainer
                     email={this.state.email}
                     addTodo={addTodo}
@@ -320,7 +323,7 @@ class App extends Component {
                     deleteTodo={deleteTodo}
                     setSelected={updateSelectedTodo}
                     doneTodo={this._doneTodo}
-                />}
+                />
             </div>
         );
     }

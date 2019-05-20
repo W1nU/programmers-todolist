@@ -80,6 +80,7 @@ class AuthForm extends Component {
         }
         else{
             this.props.onHide();
+            this.props.signInAlert("정상적으로 가입되었습니다");
             if(data.data['contents'] === "정상 가입"){
                 return;
             }

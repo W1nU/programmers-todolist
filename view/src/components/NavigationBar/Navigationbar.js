@@ -79,6 +79,7 @@ class Navigationbar extends Component {
                     login = {this.props.login}
                     refreshState = {this.state.refreshState}
                     refreshStateDone = {this._setRefreshStateFalse}
+                    signInAlert = {this.props.signInAlert}
             />
 
             </Navbar>
