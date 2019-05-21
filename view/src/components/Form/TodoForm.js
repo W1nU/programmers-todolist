@@ -47,7 +47,7 @@ class TodoForm extends Component {
 
     _clearTime = () => {
         if (this.state.isModify === false) {
-            this.setState({time: ""})
+            this.setState({time: null})
         }
         this.props.onHide()
     };
@@ -84,7 +84,7 @@ class TodoForm extends Component {
 }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        if (nextProps.isModifyTodo === true) {
+        if (nextProps.isModifyTodo === true && nextProps.selectedTodo['time'] !== null) {
             this.setState({
                 priority: 1,
                 isModify: nextProps.isModifyTodo,
@@ -94,7 +94,19 @@ class TodoForm extends Component {
                 contentPlaceholder: nextProps.selectedTodo['content'],
                 titlePlaceholder: nextProps.selectedTodo['title']
             })
-        } else {
+        }
+        else if(nextProps.isModifyTodo === true){
+            this.setState({
+                priority: 1,
+                isModify: nextProps.isModifyTodo,
+                todoTitle: nextProps.selectedTodo['title'],
+                todoContent: nextProps.selectedTodo['content'],
+                time: null,
+                contentPlaceholder: nextProps.selectedTodo['content'],
+                titlePlaceholder: nextProps.selectedTodo['title']
+            })
+        }
+        else {
             this.setState({
                 priority: 1,
                 contentPlaceholder: "할 일의 내용을 입력하세요",

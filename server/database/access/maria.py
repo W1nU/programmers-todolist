@@ -54,5 +54,4 @@ class maria:
 
     def find_user_todo(self, content):
         sql = f"""SELECT todo FROM todo WHERE user_email = '{content['user_email']}';"""
-        print(sql)
         return self.s_execute(sql)

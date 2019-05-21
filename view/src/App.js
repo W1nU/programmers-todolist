@@ -49,7 +49,6 @@ class App extends Component {
             "user_email": sessionStorage.user_email,
             "sessionKey": sessionStorage.sessionKey
         }).then(data => {
-            console.log(data)
             if (data.data[0] === 2) {
                 this._displayAlert("세션 오류. 다시 로그인 하세요.")
             } else if (data.data[0] === 0) {
@@ -225,7 +224,6 @@ class App extends Component {
                 "todo": JSON.stringify(this.state.todo)
 
             }).then(data => {
-                console.log(data)
                 if (data.data[0] === 2) {
                     this._logOut();
                     this._displayAlert("세션 오류입나다. 다시 로그린 하세요.")
