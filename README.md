@@ -75,7 +75,7 @@ python3 app.py
    - 페이지의 전면에 제목 리스트가 왼쪽에 뜨고 해당 요소를 클릭하면 오른쪽의 회색 박스에 내용이 표시됩니다.
   
 1. TODO 항목의 제목과 내용을 수정할 수 있다.
-   - 싱위 항목과 동일합니다.
+   - 위 항목과 동일합니다.
   
 1. TODO 항목을 삭제할 수 있다.
    - 삭제 버튼으로 삭제가 가능하며, 로그인 후에 삭제를 하게되면 서버에 update_todo가 호출되며 DB에서도 삭제되게 됩니다. 
@@ -96,7 +96,7 @@ python3 app.py
    - 네비게이션바의 로그인, 회원가입, 로그아웃 버튼을 이용해 사용이 가능하며, 로그인 여부에 따라 변경됩니다. 
   
    - 사용자가 회원가입 요청을 클라이언트에서 보내면, 내부적으로 1차적으로 hashing하여 전송합니다. 
-    그 후 서버에서 다시 hashing한 값을 DB(maria)에 저장하고, 임의의 문자열을 hashing한 값에 요청 시간의 timestamp를 문자열 덧셈하여 
+    그 후 서버에서 다시 hashing한 값을 DB(maria)에 저장하고, uuid를 생성한 값에 요청 시간의 timestamp를 문자열 덧셈하여 
     sessionKey로 클라이언트에 전송합니다. 또한 sessionKey는 redis에 key = user_email, value = sessionKey로 
     sessionStorage에 저장됩니다.
     
